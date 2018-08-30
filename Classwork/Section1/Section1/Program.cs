@@ -10,9 +10,12 @@ namespace Section1
     {
         static void Main( string[] args )
         {
+            bool notQuit;
             do
-                DisplayMenu();
-            while (true);
+            {
+                notQuit = DisplayMenu();
+            }
+            while (notQuit);
 
             //PlayWithStrings();
         }
@@ -125,22 +128,22 @@ namespace Section1
 
         private static void ViewMovie()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("View Movie");
         }
 
         private static void DeleteMovie()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Delete Movie");
         }
 
         private static void EditMovie()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Edit Movie");
         }
 
         private static void AddMovie()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Add Movie");
         }
     }
 }
