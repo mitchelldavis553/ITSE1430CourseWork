@@ -10,48 +10,85 @@ namespace PizzaCreator
     {
         static void Main(string[] args)
         {
-            DisplayMenu();
+            bool notQuit;
+            do
+            {
+                notQuit = DisplayMenu();
+            }
+            while (notQuit);
         }
 
-        private static void DisplayMenu()
+        private static bool DisplayMenu()
         {
-            Console.WriteLine("N)ew Order");
-            Console.WriteLine("M)odify Order");
-            Console.WriteLine("D)isplay Order");
-            Console.WriteLine("Q)uit");
-
-            string input = Console.ReadLine();
-            switch (input [0])
+            while (true)
             {
+                Console.WriteLine("N)ew Order");
+                Console.WriteLine("M)odify Order");
+                Console.WriteLine("D)isplay Order");
+                Console.WriteLine("Q)uit");
 
-                case 'N': NewOrder(); break;
-                case 'M': ModifyOrder(); break;
-                case 'D': DisplayOrder(); break;
-                case 'Q':; break;
+                string input = Console.ReadLine();
+                switch (input[0])
+                {
+                    case 'n':
+                    case 'N': NewOrder(); return true;
 
-                default: Console.WriteLine("Invalid Input, please try to enter the options again."); break;
+                    case 'm':
+                    //case 'M': ModifyOrder(); return true;
+
+                    case 'd':
+                    //case 'D': DisplayOrder(); return true;
+
+                    case 'q':
+                    case 'Q':; return false;
+
+                    default: Console.WriteLine("Invalid Input, please try to enter the given options again."); return true;
 
 
+                }
             }
 
         }
 
         private static void NewOrder()
         {
-            Console.WriteLine("VOID");
+            while (true)
+            {
+                Console.WriteLine("Size of Pizza: One is required\n");
+                Console.WriteLine("\t* Small \"S\" ($5)\n");
+                Console.WriteLine("\t* Medium \"M\" ($6.25)\n");
+                Console.WriteLine("\t* Large \"L\"($8.75)\n");
+
+                string pizzaSizeInput = Console.ReadLine();
+                switch (pizzaSizeInput[0])
+                {
+
+                    case 's': 
+                    case 'S': Console.WriteLine("Small"); break;
+                                                          
+                    case 'm':                             
+                    case 'M': Console.WriteLine("Medium"); break;
+                                                          
+                    case 'l':                             
+                    case 'L': Console.WriteLine("Large"); break;
+
+                    default: Console.WriteLine("Invalid Input, please try to enter the given options again."); break;
+                }
+            }
+
+            //private static void ModifyOrder()
+            {
+                Console.WriteLine("Modify Order");
+
+            }
+            //private static void DisplayOrder()
+            {
+                Console.WriteLine("Display Order");
+            }
+
+
+
+
         }
-
-         private static void ModifyOrder()
-        {
-            throw new NotImplementedException();
-
-        }private static void DisplayOrder()
-        {
-            throw new NotImplementedException();
-        }
-
-       
-
-        
     }
 }
