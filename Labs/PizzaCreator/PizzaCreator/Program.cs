@@ -52,29 +52,34 @@ namespace PizzaCreator
 
         private static void NewOrder()
         {
-            while (true)
+            bool pizzaSizeSmall;
+            bool pizzaSizeMedium;
+            bool pizzaSizeLarge;
+
+            Console.WriteLine("Size of Pizza: (One is required)");
+            Console.WriteLine("\t * S)mall ($5)");
+            Console.WriteLine("\t * M)edium ($6.25)");
+            Console.WriteLine("\t * L)arge ($8.75)");
+
+            string inputPizzaSize = Console.ReadLine();
+            switch (inputPizzaSize[0])
             {
-                Console.WriteLine("Size of Pizza: One is required\n");
-                Console.WriteLine("\t* Small \"S\" ($5)\n");
-                Console.WriteLine("\t* Medium \"M\" ($6.25)\n");
-                Console.WriteLine("\t* Large \"L\"($8.75)\n");
+                case 's':
+                case 'S': pizzaSizeSmall = true; break;
 
-                string pizzaSizeInput = Console.ReadLine();
-                switch (pizzaSizeInput[0])
-                {
+                case 'm':
+                case 'M': pizzaSizeMedium = true; break;
 
-                    case 's': 
-                    case 'S': Console.WriteLine("Small"); break;
-                                                          
-                    case 'm':                             
-                    case 'M': Console.WriteLine("Medium"); break;
-                                                          
-                    case 'l':                             
-                    case 'L': Console.WriteLine("Large"); break;
+                case 'l':
+                case 'L': pizzaSizeLarge = true; break;
 
-                    default: Console.WriteLine("Invalid Input, please try to enter the given options again."); break;
-                }
+                default: Console.WriteLine("Invalid Input, please try to enter the given options again"); break;               
             }
+
+          
+            
+
+        }
 
             //private static void ModifyOrder()
             {
