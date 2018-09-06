@@ -27,7 +27,7 @@ namespace PizzaCreator
                 Console.WriteLine("D: Display Order");
                 Console.WriteLine("Q: Quit");
 
-                string input = Console.ReadLine();
+                string input = ValidatingStrings();
                 switch (input[0])
                 {
                     case 'n':
@@ -52,18 +52,25 @@ namespace PizzaCreator
 
         private static void NewOrder()
         {
-            sizeOfPizza = PizzaSize();
-                            
+            dummySizeOfPizza = PizzaSize();
+
+            if (dummySizeOfPizza == pizzaSizeSmall)
+                realSizeOfPizza = "Small";
+
+            if (dummySizeOfPizza == pizzaSizeMedium)
+                realSizeOfPizza = "Medium";
+
+            if (dummySizeOfPizza == pizzaSizeLarge)
+                realSizeOfPizza = "Large";
+
+
+
         }
 
         private static bool PizzaSize()
         {
             while (true)
-            {
-                bool pizzaSizeSmall;
-                bool pizzaSizeMedium;
-                bool pizzaSizeLarge;
-
+            {              
                 Console.WriteLine("Size of Pizza: One is required");
                 Console.WriteLine("\t * S: Small ($5)");
                 Console.WriteLine("\t * M: Medium ($6.25)");
@@ -87,6 +94,11 @@ namespace PizzaCreator
             };
         }
 
+        private static void PizzaMeatToppings()
+        {
+            
+        }
+
         private static string ValidatingStrings()
         {
             while (true)
@@ -96,15 +108,13 @@ namespace PizzaCreator
                 if (!String.IsNullOrEmpty(input))
                     return input;
 
-                Console.WriteLine("Please enter something into the command prompt:");
-                Console.WriteLine("Size of Pizza: One is required");
-                Console.WriteLine("\t * S: Small ($5)");
-                Console.WriteLine("\t * M: Medium ($6.25)");
-                Console.WriteLine("\t * L: Large ($8.75)");
-
             };
         }
 
-        static bool sizeOfPizza;
+        static bool dummySizeOfPizza;
+        static string realSizeOfPizza;
+        static bool pizzaSizeSmall;
+        static bool pizzaSizeMedium;
+        static bool pizzaSizeLarge;
     }
 }
