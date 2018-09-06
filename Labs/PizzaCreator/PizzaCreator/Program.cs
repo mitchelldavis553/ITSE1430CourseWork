@@ -63,6 +63,10 @@ namespace PizzaCreator
             if (dummySizeOfPizza == pizzaSizeLarge)
                 realSizeOfPizza = "Large";
 
+            void meatInput = PizzaMeatToppings();
+
+
+
 
 
         }
@@ -96,6 +100,20 @@ namespace PizzaCreator
 
         private static void PizzaMeatToppings()
         {
+            Console.WriteLine("Do you want any meats on your pizza?");
+            Console.WriteLine("\n Your options are:");
+            Console.WriteLine(" B: Bacon\n H: Ham\n P: Pepperoni\n S: Sausage ");
+
+            bool[] meatToppings = new bool[3];
+
+            meatToppings[0] = false; // Bacon
+            meatToppings[1] = false; // Ham
+            meatToppings[2] = false; // Pepperoni
+            meatToppings[3] = false; // Sausage
+
+
+
+            
             
         }
 
