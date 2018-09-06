@@ -22,10 +22,10 @@ namespace PizzaCreator
         {
             while (true)
             {
-                Console.WriteLine("N)ew Order");
-                Console.WriteLine("M)odify Order");
-                Console.WriteLine("D)isplay Order");
-                Console.WriteLine("Q)uit");
+                Console.WriteLine("N: New Order");
+                Console.WriteLine("M: Modify Order");
+                Console.WriteLine("D: Display Order");
+                Console.WriteLine("Q: Quit");
 
                 string input = Console.ReadLine();
                 switch (input[0])
@@ -52,48 +52,59 @@ namespace PizzaCreator
 
         private static void NewOrder()
         {
-            bool pizzaSizeSmall;
-            bool pizzaSizeMedium;
-            bool pizzaSizeLarge;
-
-            Console.WriteLine("Size of Pizza: (One is required)");
-            Console.WriteLine("\t * S)mall ($5)");
-            Console.WriteLine("\t * M)edium ($6.25)");
-            Console.WriteLine("\t * L)arge ($8.75)");
-
-            string inputPizzaSize = Console.ReadLine();
-            switch (inputPizzaSize[0])
-            {
-                case 's':
-                case 'S': pizzaSizeSmall = true; break;
-
-                case 'm':
-                case 'M': pizzaSizeMedium = true; break;
-
-                case 'l':
-                case 'L': pizzaSizeLarge = true; break;
-
-                default: Console.WriteLine("Invalid Input, please try to enter the given options again"); break;               
-            }
-
-          
-            
-
+            sizeOfPizza = PizzaSize();
+                            
         }
 
-            //private static void ModifyOrder()
+        private static bool PizzaSize()
+        {
+            while (true)
             {
-                Console.WriteLine("Modify Order");
+                bool pizzaSizeSmall;
+                bool pizzaSizeMedium;
+                bool pizzaSizeLarge;
 
-            }
-            //private static void DisplayOrder()
-            {
-                Console.WriteLine("Display Order");
-            }
+                Console.WriteLine("Size of Pizza: One is required");
+                Console.WriteLine("\t * S: Small ($5)");
+                Console.WriteLine("\t * M: Medium ($6.25)");
+                Console.WriteLine("\t * L: Large ($8.75)");
 
+                string input = ValidatingStrings();
 
+                switch (input[0])
+                {
+                    case 's':
+                    case 'S': { pizzaSizeSmall = true; return pizzaSizeSmall; }
 
+                    case 'm':
+                    case 'M': { pizzaSizeMedium = true; return pizzaSizeMedium; }
 
+                    case 'l':
+                    case 'L': { pizzaSizeLarge = true; return pizzaSizeLarge; }
+
+                    default: Console.WriteLine("Please enter a valid value"); break;
+                };
+            };
         }
+
+        private static string ValidatingStrings()
+        {
+            while (true)
+            {
+                string input = Console.ReadLine();
+
+                if (!String.IsNullOrEmpty(input))
+                    return input;
+
+                Console.WriteLine("Please enter something into the command prompt:");
+                Console.WriteLine("Size of Pizza: One is required");
+                Console.WriteLine("\t * S: Small ($5)");
+                Console.WriteLine("\t * M: Medium ($6.25)");
+                Console.WriteLine("\t * L: Large ($8.75)");
+
+            };
+        }
+
+        static bool sizeOfPizza;
     }
 }
