@@ -63,18 +63,16 @@ namespace PizzaCreator
             if (dummySizeOfPizza == pizzaSizeLarge)
                 realSizeOfPizza = "Large";
 
-            void meatInput = PizzaMeatToppings();
+            //Console.WriteLine(realSizeOfPizza);
 
-
-
-
+            bool meatInput = PizzaMeatToppings();
 
         }
 
         private static bool PizzaSize()
         {
             while (true)
-            {              
+            {
                 Console.WriteLine("Size of Pizza: One is required");
                 Console.WriteLine("\t * S: Small ($5)");
                 Console.WriteLine("\t * M: Medium ($6.25)");
@@ -93,29 +91,77 @@ namespace PizzaCreator
                     case 'l':
                     case 'L': { pizzaSizeLarge = true; return pizzaSizeLarge; }
 
-                    default: Console.WriteLine("Please enter a valid value"); break;
+                    default: Console.WriteLine("Please enter a valid input."); break;
                 };
             };
         }
 
-        private static void PizzaMeatToppings()
-        {
+        private static bool PizzaMeatToppings()
+        { 
             Console.WriteLine("Do you want any meats on your pizza?");
-            Console.WriteLine("\n Your options are:");
-            Console.WriteLine(" B: Bacon\n H: Ham\n P: Pepperoni\n S: Sausage ");
+            Console.WriteLine("'Y' for Yes or 'N' for No");
 
-            bool[] meatToppings = new bool[3];
+            string input = ValidatingStrings();
+            string confirmationInput = input.ToUpper();
 
-            meatToppings[0] = false; // Bacon
-            meatToppings[1] = false; // Ham
-            meatToppings[2] = false; // Pepperoni
-            meatToppings[3] = false; // Sausage
+            if (confirmationInput[0] == 'Y')
+            {
+                bool[] meatToppings = new bool[3];
 
+                meatToppings[0] = false; // Bacon
+                meatToppings[1] = false; // Ham
+                meatToppings[2] = false; // Pepperoni
+                meatToppings[3] = false; // Sausage
 
+                while (true)
+                {
+                    Console.WriteLine("\n Your options are: (Note) for each topping it is an additional $0.75 ");
+                    Console.WriteLine(" B: Bacon\n H: Ham\n P: Pepperoni\n S: Sausage ");
 
-            
-            
+                    string meatInput = ValidatingStrings();
+                    switch (meatInput[0])
+                    {
+
+                        case 'b':
+                        case 'B': meatToppings[0] = true; break;
+
+                        case 'h':
+                        case 'H': meatToppings[1] = true; break;
+
+                        case 'p':
+                        case 'P': meatToppings[2] = true; break;
+
+                        case 's':
+                        case 'S': meatToppings[3] = true; break;
+
+                        default: Console.WriteLine("Please enter a valid input."); break;
+
+                    }
+
+                    Console.WriteLine("Would you like more meat toppings?");
+                    Console.WriteLine("'Y' for Yes or 'N' for No");
+
+                    string additionalMeatInput = ValidatingStrings();
+                    switch (additionalMeatInput[0])
+                    {
+                        case 'y':
+                        case 'Y': break;
+
+                        case 'n':
+                        case 'N': return meatToppings[];
+
+                        default: Console.WriteLine("Please enter a valid input"); break;
+                    }
+                };
+     
+            }
+
+            if (confirmationInput[0] == 'N')
+                return false;
+
         }
+
+    
 
         private static string ValidatingStrings()
         {
@@ -129,8 +175,9 @@ namespace PizzaCreator
             };
         }
 
-        static bool dummySizeOfPizza;
         static string realSizeOfPizza;
+
+        static bool dummySizeOfPizza;
         static bool pizzaSizeSmall;
         static bool pizzaSizeMedium;
         static bool pizzaSizeLarge;
