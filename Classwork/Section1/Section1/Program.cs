@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * ITSE 1430
+ * Sample implementation
+ */
+using System;
 
 namespace Section1
 {
@@ -20,7 +20,7 @@ namespace Section1
             //PlayWithStrings();
         }
 
-      
+
 
         private static void PlayWithStrings()
         {
@@ -75,8 +75,8 @@ namespace Section1
             //if (firstName.Length == 0)
             // if (firstName != null && firstName != "")
             if (!String.IsNullOrEmpty(firstName))
-                Console.WriteLine(firstName);          
-           
+                Console.WriteLine(firstName);
+
             //Other Stuff
             string upperName = firstName.ToUpper();
             string lowerName = firstName.ToLower();
@@ -107,7 +107,7 @@ namespace Section1
                 Console.WriteLine("Name?");
                 names[index] = Console.ReadLine();
             };
-            
+
             foreach (string name in names)
 
             //for (int index = 0; index < names.Length; ++index) // Important .Length tells you how many elements are typed in an array. Int
@@ -134,39 +134,110 @@ namespace Section1
                 string input = Console.ReadLine();
                 switch (input[0])
                 {
-                    case 'a': 
-                    case 'A': { AddMovie(); return true; }
+                    case 'a':
+                    case 'A':
+                        { AddMovie(); return true; }
 
-                    case 'e': 
-                    case 'E': EditMovie(); return true;
+                    case 'e':
+                    case 'E':
+                    EditMovie();
+                    return true;
 
-                    case 'd': 
-                    case 'D': DeleteMovie(); return true;
+                    case 'd':
+                    case 'D':
+                    DeleteMovie();
+                    return true;
 
-                    case 'v': 
-                    case 'V': ViewMovie(); return true;
+                    case 'v':
+                    case 'V':
+                    ViewMovie();
+                    return true;
 
-                    case 'q': 
-                    case 'Q': return false;
+                    case 'q':
+                    case 'Q':
+                    return false;
 
-                    default: Console.WriteLine("Please enter a valid value."); break;
+                    default:
+                    Console.WriteLine("Please enter a valid value.");
+                    break;
                 };
             };
         }
 
         private static void ViewMovie()
         {
-            Console.WriteLine("View Movie");
+            if (String.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("No movies available");
+                return;
+            };
+
+            Console.WriteLine(name);
+
+            if (!String.IsNullOrEmpty(description))
+            {
+                Console.WriteLine(description);
+            };
+
+            Console.WriteLine($"Run Length = {runLength} mins");
+
         }
 
         private static void DeleteMovie()
         {
-            Console.WriteLine("Delete Movie");
+            if (Confirm(" Are you sure you want to delete this movie?"))
+            {
+                // "Delete" the movie
+                name = null;
+                description = null;
+                runLength = 0;
+            };
+
+        }
+
+        private static bool Confirm( string message )
+        {
+            Console.WriteLine($"{message} (Y/N)");
+            do
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                switch (key.KeyChar)
+                {
+                    case 'Y':
+                    case 'y':
+                    return true;
+
+                    case 'N':
+                    case 'n':
+                    return false;
+                };
+            }
+            while (true);
+
+            //if (key.KeyChar == 'Y')
+            //return true;
+
+            //else if (key.KeyChar == 'N')
+            //return false;
+
         }
 
         private static void EditMovie()
         {
-            Console.WriteLine("Edit Movie");
+            ViewMovie();
+
+            var newName = ReadString("Enter a name (or press ENTER for default)", false);
+            if (!String.IsNullOrEmpty(newName))
+                name = newName;
+
+            var newDescription = ReadString("Enter a description (or press ENTER for default)");
+            if (!String.IsNullOrEmpty(newDescription))
+                description = newDescription;
+
+            var newRunLength = ReadInt32("Enter a run length (in minutes): ", 0);
+            if (newRunLength > 0)
+                runLength = newRunLength;
+
         }
 
         private static void AddMovie()
@@ -176,14 +247,14 @@ namespace Section1
             runLength = ReadInt32("Enter a run length (in minutes): ", 0);
         }
 
-        private static int ReadInt32(string message, int minValue)
+        private static int ReadInt32( string message, int minValue )
         {
             while (true)
             {
                 Console.WriteLine(message);
-                string input = Console.ReadLine();
+                var input = Console.ReadLine();
 
-                if (Int32.TryParse(input, out int result))
+                if (Int32.TryParse(input, out var result))
                 {
                     if (result >= minValue)
                         return result;
@@ -191,7 +262,7 @@ namespace Section1
 
                 Console.WriteLine($"You must enter an integer value >= {minValue}");
             };
-            
+
         }
 
         private static string ReadString( string message )
@@ -207,7 +278,7 @@ namespace Section1
                 string input = Console.ReadLine();
 
                 if (!String.IsNullOrEmpty(input) || !required)
-                return input;
+                    return input;
 
                 Console.WriteLine("You must enter a value!");
             };
