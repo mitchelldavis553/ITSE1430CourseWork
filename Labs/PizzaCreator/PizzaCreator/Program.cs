@@ -109,7 +109,7 @@ namespace PizzaCreator
                         Console.WriteLine("\n Your options are: (Note) for each topping it is an additional $0.75 ");
                         Console.WriteLine(" B: Bacon\n H: Ham\n P: Pepperoni\n S: Sausage ");
 
-                        Console.WriteLine("The meat toppings you currently have selected are:\n");
+                        Console.WriteLine("The meat toppings you currently have selected are:\n"); //Displaying Meats Selected
 
                         if (meatToppings[0] == true)
                             Console.WriteLine("Bacon");
