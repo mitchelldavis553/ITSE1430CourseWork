@@ -27,7 +27,7 @@ namespace PizzaCreator
                 Console.WriteLine("D: Display Order");
                 Console.WriteLine("Q: Quit");
 
-                string input = ValidatingStrings();
+                string input = ValidatingInput();
                 switch (input[0])
                 {
                     case 'n':
@@ -63,9 +63,7 @@ namespace PizzaCreator
             if (dummySizeOfPizza == pizzaSizeLarge)
                 realSizeOfPizza = "Large";
 
-            //Console.WriteLine(realSizeOfPizza);
-
-            bool meatInput = PizzaMeatToppings();
+            PizzaMeatToppings();
 
         }
 
@@ -78,7 +76,7 @@ namespace PizzaCreator
                 Console.WriteLine("\t * M: Medium ($6.25)");
                 Console.WriteLine("\t * L: Large ($8.75)");
 
-                string input = ValidatingStrings();
+                string input = ValidatingInput();
 
                 switch (input[0])
                 {
@@ -96,74 +94,132 @@ namespace PizzaCreator
             };
         }
 
-        private static bool PizzaMeatToppings()
+        private static void PizzaMeatToppings()
         { 
             Console.WriteLine("Do you want any meats on your pizza?");
             Console.WriteLine("'Y' for Yes or 'N' for No");
 
-            string input = ValidatingStrings();
+            string input = ValidatingInput();
             string confirmationInput = input.ToUpper();
 
             if (confirmationInput[0] == 'Y')
             {
-                bool[] meatToppings = new bool[3];
+                    while (true)
+                    { 
+                        Console.WriteLine("\n Your options are: (Note) for each topping it is an additional $0.75 ");
+                        Console.WriteLine(" B: Bacon\n H: Ham\n P: Pepperoni\n S: Sausage ");
 
-                meatToppings[0] = false; // Bacon
-                meatToppings[1] = false; // Ham
-                meatToppings[2] = false; // Pepperoni
-                meatToppings[3] = false; // Sausage
+                        Console.WriteLine("The meat toppings you currently have selected are:\n");
 
-                while (true)
-                {
-                    Console.WriteLine("\n Your options are: (Note) for each topping it is an additional $0.75 ");
-                    Console.WriteLine(" B: Bacon\n H: Ham\n P: Pepperoni\n S: Sausage ");
+                        if (meatToppings[0] == true)
+                            Console.WriteLine("Bacon");
 
-                    string meatInput = ValidatingStrings();
-                    switch (meatInput[0])
-                    {
+                        if (meatToppings[1] == true)
+                            Console.WriteLine("Ham");
 
-                        case 'b':
-                        case 'B': meatToppings[0] = true; break;
+                        if (meatToppings[2] == true)
+                            Console.WriteLine("Pepperoni");
 
-                        case 'h':
-                        case 'H': meatToppings[1] = true; break;
+                        if (meatToppings[3] == true)
+                            Console.WriteLine("Sausage");
 
-                        case 'p':
-                        case 'P': meatToppings[2] = true; break;
+                        string meatInput = ValidatingInput();
+                        switch (meatInput[0])
+                        {
+                            case 'b':
+                            case 'B':
+                                {
+                                    if (meatToppings[0] == true)
+                                    {
+                                        meatToppings[0] = false;
+                                    };
 
-                        case 's':
-                        case 'S': meatToppings[3] = true; break;
+                                    if (meatToppings[0] == false)
+                                    {
+                                        meatToppings[0] = true;
+                                    };
+                                    break;
+                                }
 
-                        default: Console.WriteLine("Please enter a valid input."); break;
+                            case 'h':
+                            case 'H':
+                                {
+                                    if (meatToppings[1] == true)
+                                    {
+                                        meatToppings[1] = false;
+                                    };
 
-                    }
+                                    if (meatToppings[1] == false)
+                                    {
+                                        meatToppings[1] = true;
+                                    };
 
-                    Console.WriteLine("Would you like more meat toppings?");
-                    Console.WriteLine("'Y' for Yes or 'N' for No");
+                                    break;
+                                }
 
-                    string additionalMeatInput = ValidatingStrings();
-                    switch (additionalMeatInput[0])
-                    {
-                        case 'y':
-                        case 'Y': break;
+                            case 'p':
+                            case 'P':
+                                {
+                                    if (meatToppings[2] == true)
+                                    {
+                                        meatToppings[2] = false;
+                                    };
 
-                        case 'n':
-                        case 'N': return meatToppings[];
+                                    if (meatToppings[2] == false)
+                                    {
+                                        meatToppings[2] = true;
+                                    };
 
-                        default: Console.WriteLine("Please enter a valid input"); break;
-                    }
-                };
+                                    break;
+                                }
+
+                            case 's':
+                            case 'S':
+                                {
+                                    if (meatToppings[3] == true)
+                                    {
+                                        meatToppings[3] = false;
+                                    };
+
+                                    if (meatToppings[3] == false)
+                                    {
+                                        meatToppings[3] = true;
+                                    };
+
+                                    break;
+                                }
+
+                            default: Console.WriteLine("Please enter a valid input."); break;
+
+                        }
+
+                        Console.WriteLine("Would you like more meat toppings?");
+                        Console.WriteLine("'Y' for Yes or 'N' for No");
+
+                        string additionalMeatInput = ValidatingInput();
+                        switch (additionalMeatInput[0])
+                        {
+                            case 'y':
+                            case 'Y': break;
+
+                            case 'n':
+                            case 'N': return;
+
+                            default: Console.WriteLine("Please enter a valid input"); break;
+                        }
+                    };
+                    
      
             }
 
             if (confirmationInput[0] == 'N')
-                return false;
+                return;
 
         }
 
     
 
-        private static string ValidatingStrings()
+        private static string ValidatingInput()
         {
             while (true)
             {
@@ -176,6 +232,8 @@ namespace PizzaCreator
         }
 
         static string realSizeOfPizza;
+
+        static bool[] meatToppings = new bool[3];
 
         static bool dummySizeOfPizza;
         static bool pizzaSizeSmall;
