@@ -52,22 +52,11 @@ namespace PizzaCreator
 
         private static void NewOrder()
         {
-            dummySizeOfPizza = PizzaSize();
-
-            if (dummySizeOfPizza == pizzaSizeSmall)
-                realSizeOfPizza = "Small";
-
-            if (dummySizeOfPizza == pizzaSizeMedium)
-                realSizeOfPizza = "Medium";
-
-            if (dummySizeOfPizza == pizzaSizeLarge)
-                realSizeOfPizza = "Large";
-
+            PizzaSize();
             PizzaMeatToppings();
-
         }
 
-        private static bool PizzaSize()
+        private static void PizzaSize()
         {
             while (true)
             {
@@ -81,13 +70,13 @@ namespace PizzaCreator
                 switch (input[0])
                 {
                     case 's':
-                    case 'S': { pizzaSizeSmall = true; return pizzaSizeSmall; }
+                    case 'S':  realSizeOfPizza = "Small"; return;  
 
                     case 'm':
-                    case 'M': { pizzaSizeMedium = true; return pizzaSizeMedium; }
+                    case 'M':  realSizeOfPizza = "Medium"; return;
 
                     case 'l':
-                    case 'L': { pizzaSizeLarge = true; return pizzaSizeLarge; }
+                    case 'L':  realSizeOfPizza = "Large"; return;
 
                     default: Console.WriteLine("Please enter a valid input."); break;
                 };
@@ -127,70 +116,18 @@ namespace PizzaCreator
                         switch (meatInput[0])
                         {
                             case 'b':
-                            case 'B':
-                                {
-                                    if (meatToppings[0] == true)
-                                    {
-                                        meatToppings[0] = false;
-                                    };
-
-                                    if (meatToppings[0] == false)
-                                    {
-                                        meatToppings[0] = true;
-                                    };
-                                    break;
-                                }
-
+                            case 'B': meatToppings[0] = !meatToppings[0]; break;
+;
                             case 'h':
-                            case 'H':
-                                {
-                                    if (meatToppings[1] == true)
-                                    {
-                                        meatToppings[1] = false;
-                                    };
-
-                                    if (meatToppings[1] == false)
-                                    {
-                                        meatToppings[1] = true;
-                                    };
-
-                                    break;
-                                }
-
+                            case 'H': meatToppings[1] = !meatToppings[1]; break;
+                              
                             case 'p':
-                            case 'P':
-                                {
-                                    if (meatToppings[2] == true)
-                                    {
-                                        meatToppings[2] = false;
-                                    };
-
-                                    if (meatToppings[2] == false)
-                                    {
-                                        meatToppings[2] = true;
-                                    };
-
-                                    break;
-                                }
+                            case 'P': meatToppings[2] = !meatToppings[2]; break;
 
                             case 's':
-                            case 'S':
-                                {
-                                    if (meatToppings[3] == true)
-                                    {
-                                        meatToppings[3] = false;
-                                    };
-
-                                    if (meatToppings[3] == false)
-                                    {
-                                        meatToppings[3] = true;
-                                    };
-
-                                    break;
-                                }
-
+                            case 'S': meatToppings[3] = !meatToppings[3]; break;
+                                
                             default: Console.WriteLine("Please enter a valid input."); break;
-
                         }
 
                         Console.WriteLine("Would you like more meat toppings?");
@@ -208,13 +145,10 @@ namespace PizzaCreator
                             default: Console.WriteLine("Please enter a valid input"); break;
                         }
                     };
-                    
-     
             }
 
             if (confirmationInput[0] == 'N')
                 return;
-
         }
 
     
@@ -233,11 +167,6 @@ namespace PizzaCreator
 
         static string realSizeOfPizza;
 
-        static bool[] meatToppings = new bool[3];
-
-        static bool dummySizeOfPizza;
-        static bool pizzaSizeSmall;
-        static bool pizzaSizeMedium;
-        static bool pizzaSizeLarge;
+        static bool[] meatToppings = new bool[4];
     }
 }
