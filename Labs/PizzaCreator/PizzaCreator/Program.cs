@@ -57,6 +57,8 @@ namespace PizzaCreator
                 if (input[0] == 'Y')
                 {
                     PizzaSize("Would you like to change the size of your pizza?");
+                    PizzaMeatToppings("Would you like to change your meat toppings?");
+                    PizzaVegetableToppings("Would you like to change your vegetable toppings?");
                 };
 
                 if (input[0] == 'N')
@@ -68,6 +70,118 @@ namespace PizzaCreator
                 Console.WriteLine("You do not have an existing order: Returning to main menu.");
                 return;
             };
+        }
+
+        private static void PizzaVegetableToppings(string message)
+        {
+            Console.WriteLine("********************************************");
+            Console.WriteLine(message);
+            Console.WriteLine("These are the vegetable toppings you currently have selected.");
+            if (!String.IsNullOrEmpty(oliveTopping))
+                Console.WriteLine(oliveTopping);
+
+            if (!String.IsNullOrEmpty(mushroomTopping))
+                Console.WriteLine(mushroomTopping);
+
+            if (!String.IsNullOrEmpty(onionTopping))
+                Console.WriteLine(onionTopping);
+
+            if (!String.IsNullOrEmpty(pepperTopping))
+                Console.WriteLine(pepperTopping);
+
+        }
+
+        private static void PizzaMeatToppings(string message)
+        {
+            Console.WriteLine("********************************************");
+            Console.WriteLine(message);
+            Console.WriteLine("These are the meat toppings you currently have selected.");
+            if (!String.IsNullOrEmpty(baconTopping))
+                Console.WriteLine(baconTopping);
+
+            if (!String.IsNullOrEmpty(hamTopping))
+                Console.WriteLine(hamTopping);
+
+            if (!String.IsNullOrEmpty(pepperoniTopping))
+                Console.WriteLine(pepperoniTopping);
+
+            if (!String.IsNullOrEmpty(sausageTopping))
+                Console.WriteLine(sausageTopping);
+
+            Console.WriteLine("'Y' for Yes or 'N' for No");
+            string input = ValidatingInput();
+            if (input[0] == 'Y')
+            {
+                while (true)
+                {
+                    Console.WriteLine("\n Your options are: (Note) for each topping it is an additional $0.75 ");
+                    Console.WriteLine(" B: Bacon\n H: Ham\n P: Pepperoni\n S: Sausage ");
+
+                    string meatInput = ValidatingInput();
+                    switch (meatInput[0]) // Toggling Meats Selected
+                    {
+                        case 'B': meatToppings[0] = !meatToppings[0]; break;
+
+                        case 'H': meatToppings[1] = !meatToppings[1]; break;
+
+                        case 'P': meatToppings[2] = !meatToppings[2]; break;
+
+                        case 'S': meatToppings[3] = !meatToppings[3]; break;
+
+                        default: Console.WriteLine("Please enter a valid input."); break;
+                    };
+
+                    Console.WriteLine("The Meat toppings you currently have selected are:\n"); //Displaying Meats Selected
+
+                    if (meatToppings[0] == true)
+                    {
+                        Console.WriteLine("Bacon");
+                        baconTopping = "Bacon";
+                    }
+                    else
+                        baconTopping = "";
+
+                    if (meatToppings[1] == true)
+                    {
+                        Console.WriteLine("Ham");
+                        hamTopping = "Ham";
+                    }
+                    else
+                        hamTopping = "";
+
+                    if (meatToppings[2] == true)
+                    {
+                        Console.WriteLine("Pepperoni");
+                        pepperoniTopping = "Pepperoni";
+                    }
+                    else
+                        pepperoniTopping = "";
+
+                    if (meatToppings[3] == true)
+                    {
+                        Console.WriteLine("Sausage");
+                        sausageTopping = "Sausage";
+                    }
+                    else
+                        sausageTopping = "";
+
+                    Console.WriteLine("Would you like more Meat toppings?");
+                    Console.WriteLine("'Y' for Yes or 'N' for No");
+
+                    string additionalMeatInput = ValidatingInput();
+                    switch (additionalMeatInput[0])
+                    {
+                        case 'Y': break;
+
+                        case 'N': return;
+
+                        default: Console.WriteLine("Please enter a valid input"); break;
+                    };
+                };
+            };
+
+            if (input[0] == 'N')
+                return;
         }
 
         private static void PizzaSize(string message)
