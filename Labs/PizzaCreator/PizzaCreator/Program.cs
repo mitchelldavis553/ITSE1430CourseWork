@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * ITSE 1430
+ * Pizza Creator
+ */
+using System;
 
 namespace PizzaCreator
 {
@@ -64,10 +64,15 @@ namespace PizzaCreator
                     PizzaDelivery("Would you like to change how you would like to get your order?");
                     TotalOrder();
                     DisplayOrder();
-                };
-
+                    return;
+                }
                 if (input[0] == 'N')
                     return;
+                else
+                {
+                    Console.WriteLine("Invalid Input");
+                    ModifyOrder();
+                };
             };
 
             if (existingOrder == false)
@@ -104,10 +109,14 @@ namespace PizzaCreator
                         default: Console.WriteLine("Please enter a valid input"); break;
                     };
                 };
-            };
-
+            }
             if (input[0] == 'N')
                 return;
+            else
+            {
+                Console.WriteLine("Invalid Input");
+                PizzaDelivery("Would you like to change how you would like to get your order?");
+            };
         }
 
         private static void PizzaCheese(string message)
@@ -137,10 +146,14 @@ namespace PizzaCreator
                         default: Console.WriteLine("Please enter a valid input"); break;
                     };
                 };
-            };
-
+            }
             if (input[0] == 'N')
                 return;
+            else
+            {
+                Console.WriteLine("Invalid Input");
+                PizzaCheese("Would you like to change the cheese on your pizza?");
+            };
         }
 
         private static void PizzaSauce(string message)
@@ -173,10 +186,15 @@ namespace PizzaCreator
                         default: Console.WriteLine("Please enter a valid input"); break;
                     };
                 };
-            };
-
+            }
             if (input[0] == 'N')
                 return;
+            else
+            {
+                Console.WriteLine("Invalid input");
+                PizzaSauce("Would you like to change the sauce on your pizza?");
+            };
+
         }
 
         private static void PizzaVegetableToppings(string message)
@@ -264,10 +282,14 @@ namespace PizzaCreator
                         case 'N': return;
                     };
                 };
-            };
-
+            }
             if (input[0] == 'N')
                 return;
+            else
+            {
+                Console.WriteLine("Invalid input");
+                PizzaVegetableToppings("Would you like to change your vegetable toppings?");
+            };
         }
 
         private static void PizzaMeatToppings(string message)
@@ -361,6 +383,12 @@ namespace PizzaCreator
 
             if (input[0] == 'N')
                 return;
+            else
+            {
+                Console.WriteLine("Invalid Input");
+                PizzaMeatToppings("Would you like to change your meat toppings?");
+            };
+
         }
 
         private static void PizzaSize(string message)
@@ -393,11 +421,13 @@ namespace PizzaCreator
                         default: Console.WriteLine("Please enter a valid input."); break;
                     };
                 };
-            };
-
+            }
             if (input[0] == 'N')
-            {
                 return;
+            else
+            {
+                Console.WriteLine("Invalid Input");
+                PizzaSize("Would you like to change the size of your pizza?");
             };
         }
 
@@ -425,6 +455,7 @@ namespace PizzaCreator
                     DisplayOrder();
 
                     existingOrder = true;
+                    return;
                 }
                 else
                     return;
@@ -443,54 +474,93 @@ namespace PizzaCreator
                 DisplayOrder();
 
                 existingOrder = true;
+                return;
             };
         }
 
         private static void TotalOrder()
         {
             if (sizeOfPizza == "Small")
-                sizeOfPizzaCost = 5.00;
+            {
+                oldSizeOfPizzaCost = 5.00;
+                sizeOfPizzaCost = oldSizeOfPizzaCost.ToString();
+            };
 
             if (sizeOfPizza == "Medium")
-                sizeOfPizzaCost = 6.25;
+            {
+                oldSizeOfPizzaCost = 6.25;
+                sizeOfPizzaCost = oldSizeOfPizzaCost.ToString();
+            };
 
             if (sizeOfPizza == "Large")
-                sizeOfPizzaCost = 8.75;
+            {
+                oldSizeOfPizzaCost = 8.75;
+                sizeOfPizzaCost = oldSizeOfPizzaCost.ToString();
+            };
 
             foreach(bool numberOfMeat in meatToppings)
             {
                 if (numberOfMeat == true)
-                    meatToppingCost = meatToppingCost + 0.75;
+                {
+                    oldMeatToppingCost = oldMeatToppingCost + 0.75;
+                    meatToppingCost = oldMeatToppingCost.ToString();
+                };
+
             };
 
             foreach(bool numberOfVegetable in vegetablesToppings)
             {
                 if (numberOfVegetable == true)
-                    vegetableToppingCost = vegetableToppingCost + 0.75;
+                {
+                    oldVegetableToppingCost = oldVegetableToppingCost + 0.75;
+                    vegetableToppingCost = oldVegetableToppingCost.ToString();
+                };
             };
 
             if (pizzaSauce == "Traditional")
-                pizzaSauceCost = 0;
+            {
+                oldPizzaSauceCost = 0;
+                pizzaSauceCost = oldPizzaSauceCost.ToString();
+            };
 
             if (pizzaSauce == "Garlic")
-                pizzaSauceCost = 1.00;
+            {
+                oldPizzaSauceCost = 1.00;
+                pizzaSauceCost = oldPizzaSauceCost.ToString();
+            };
 
             if (pizzaSauce == "Oregano")
-                pizzaSauceCost = 1.00;
+            {
+                oldPizzaSauceCost = 1.00;
+                pizzaSauceCost = oldPizzaSauceCost.ToString();
+            };
 
             if (pizzaCheese == "Regular")
-                pizzaCheeseCost = 0;
+            {
+                oldPizzaCheeseCost = 0;
+                pizzaCheeseCost = oldPizzaCheeseCost.ToString();
+            };
 
             if (pizzaCheese == "Extra")
-                pizzaCheeseCost = 1.25;
+            {
+                oldPizzaCheeseCost = 1.25;
+                pizzaCheeseCost = oldPizzaCheeseCost.ToString();
+            };
 
             if (pizzaDelivery == "Delivery")
-                pizzaDeliveryCost = 2.50;
+            {
+                oldPizzaDeliveryCost = 2.50;
+                pizzaDeliveryCost = oldPizzaDeliveryCost.ToString();
+            };
 
             if (pizzaDelivery == "Takeout")
-                pizzaDeliveryCost = 0;
+            {
+                oldPizzaDeliveryCost = 0;
+                pizzaDeliveryCost = oldPizzaDeliveryCost.ToString();
+            };
 
-            total = sizeOfPizzaCost + meatToppingCost + vegetableToppingCost + pizzaSauceCost + pizzaCheeseCost + pizzaDeliveryCost;
+            result = oldSizeOfPizzaCost + oldMeatToppingCost + oldVegetableToppingCost + oldPizzaSauceCost + oldPizzaCheeseCost + oldPizzaDeliveryCost;
+            total = result.ToString();
         }
 
         private static void DisplayOrder()
@@ -501,7 +571,7 @@ namespace PizzaCreator
             Console.WriteLine($"{sizeOfPizza} Pizza ${sizeOfPizzaCost}");
             Console.WriteLine(pizzaDelivery);
 
-            Console.WriteLine($"\nMeats: ${meatToppingCost} ");
+            Console.WriteLine($"\nMeats: ${meatToppingCost}");
 
             if (!String.IsNullOrEmpty(baconTopping))
                 Console.WriteLine($"    {baconTopping}");
@@ -515,7 +585,7 @@ namespace PizzaCreator
             if (!String.IsNullOrEmpty(sausageTopping))
                 Console.WriteLine($"    {sausageTopping}");
 
-            Console.WriteLine($"\nVegetables: ${vegetableToppingCost} ");
+            Console.WriteLine($"\nVegetables: ${vegetableToppingCost}");
 
             if (!String.IsNullOrEmpty(oliveTopping))
                 Console.WriteLine($"    {oliveTopping}");
@@ -697,10 +767,14 @@ namespace PizzaCreator
                             case 'N': return;
                         };
                     };
-            };
-
+            }
             if (input[0] == 'N')
                 return;
+            else
+            {
+                Console.WriteLine("Invalid input");
+                PizzaVegetableToppings();
+            };
         }
 
         private static void PizzaSize()
@@ -803,10 +877,14 @@ namespace PizzaCreator
                             default: Console.WriteLine("Please enter a valid input"); break;
                         };
                     };
-            };
-
+            }
             if (input[0] == 'N')
                 return;
+            else
+            {
+                Console.WriteLine("Invalid Input");
+                PizzaMeatToppings();
+            };
         }
 
         private static string ValidatingInput()
@@ -836,17 +914,24 @@ namespace PizzaCreator
         static string mushroomTopping;
         static string onionTopping;
         static string pepperTopping;
+        static string total = "0";
+        static string pizzaDeliveryCost;
+        static string sizeOfPizzaCost;
+        static string pizzaSauceCost;
+        static string pizzaCheeseCost;
+        static string meatToppingCost = "0";
+        static string vegetableToppingCost = "0";
 
         static bool existingOrder;
         static bool[] meatToppings = new bool[4];
         static bool[] vegetablesToppings = new bool[4];
 
-        static double total;
-        static double sizeOfPizzaCost;
-        static double pizzaSauceCost;
-        static double pizzaCheeseCost;
-        static double pizzaDeliveryCost;
-        static double meatToppingCost;
-        static double vegetableToppingCost;
+        static double result;
+        static double oldSizeOfPizzaCost;
+        static double oldPizzaSauceCost;
+        static double oldPizzaCheeseCost;
+        static double oldPizzaDeliveryCost;
+        static double oldMeatToppingCost;
+        static double oldVegetableToppingCost;
     }
 }
