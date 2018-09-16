@@ -59,6 +59,11 @@ namespace PizzaCreator
                     PizzaSize("Would you like to change the size of your pizza?");
                     PizzaMeatToppings("Would you like to change your meat toppings?");
                     PizzaVegetableToppings("Would you like to change your vegetable toppings?");
+                    PizzaSauce("Would you like to change the sauce on your pizza?");
+                    PizzaCheese("Would you like to change the cheese on your pizza?");
+                    PizzaDelivery("Would you like to change how you would like to get your order?");
+                    TotalOrder();
+                    DisplayOrder();
                 };
 
                 if (input[0] == 'N')
@@ -70,6 +75,108 @@ namespace PizzaCreator
                 Console.WriteLine("You do not have an existing order: Returning to main menu.");
                 return;
             };
+        }
+
+        private static void PizzaDelivery(string message)
+        {
+            Console.WriteLine("********************************************");
+            Console.WriteLine(message);
+            Console.WriteLine("This is the method you currently have selected for how to acquire your order.");
+            Console.WriteLine(pizzaDelivery);
+            Console.WriteLine("'Y' for Yes or 'N' for No");
+
+            string input = ValidatingInput();
+            if (input[0] == 'Y')
+            {
+                while (true)
+                {
+                    Console.WriteLine("Do you want it delivered or to come pick it up?");
+                    Console.WriteLine("\t * D: Delivery");
+                    Console.WriteLine("\t * T: Take out");
+
+                    string newInput = ValidatingInput();
+                    switch (newInput[0])
+                    {
+                        case 'D': pizzaDelivery = "Delivery"; return;
+
+                        case 'T': pizzaDelivery = "Take out"; return;
+
+                        default: Console.WriteLine("Please enter a valid input"); break;
+                    };
+                };
+            };
+
+            if (input[0] == 'N')
+                return;
+        }
+
+        private static void PizzaCheese(string message)
+        {
+            Console.WriteLine("********************************************");
+            Console.WriteLine(message);
+            Console.WriteLine("This is the cheese you currently have selected.");
+            Console.WriteLine(pizzaCheese);
+            Console.WriteLine("'Y' for Yes or 'N' for No");
+
+            string input = ValidatingInput();
+            if (input[0] == 'Y')
+            {
+                while (true)
+                {
+                    Console.WriteLine("Cheese you would like on your pizza: One is required");
+                    Console.WriteLine("\t * R: Regular ($0)");
+                    Console.WriteLine("\t * E: Extra ($1.25)");
+
+                    string newInput = ValidatingInput();
+                    switch (newInput[0])
+                    {
+                        case 'R': pizzaCheese = "Regular"; return;
+
+                        case 'E': pizzaCheese = "Extra"; return;
+
+                        default: Console.WriteLine("Please enter a valid input"); break;
+                    };
+                };
+            };
+
+            if (input[0] == 'N')
+                return;
+        }
+
+        private static void PizzaSauce(string message)
+        {
+            Console.WriteLine("********************************************");
+            Console.WriteLine(message);
+            Console.WriteLine("This is the sauce you currently have selected.");
+            Console.WriteLine(pizzaSauce);
+            Console.WriteLine("'Y' for Yes or 'N' for No");
+
+            string input = ValidatingInput();
+            if (input[0] == 'Y')
+            {
+                while (true)
+                {
+                    Console.WriteLine("Sauce you would like on your pizza: One is required");
+                    Console.WriteLine("\t * T: Traditional ($0)");
+                    Console.WriteLine("\t * G: Garlic ($1)");
+                    Console.WriteLine("\t * O: Oregano ($1)");
+
+                    string newInput = ValidatingInput();
+                    switch (newInput[0])
+                    {
+                        case 'T': pizzaSauce = "Traditional"; return;
+
+                        case 'G': pizzaSauce = "Garlic"; return;
+
+                        case 'O': pizzaSauce = "Oregano"; return;
+
+                        default: Console.WriteLine("Please enter a valid input"); break;
+                    };
+                };
+            };
+
+            if (input[0] == 'N')
+                return;
         }
 
         private static void PizzaVegetableToppings(string message)
@@ -89,6 +196,78 @@ namespace PizzaCreator
             if (!String.IsNullOrEmpty(pepperTopping))
                 Console.WriteLine(pepperTopping);
 
+            Console.WriteLine("'Y' for Yes or 'N' for No");
+            string input = ValidatingInput();
+            if (input[0] == 'Y')
+            {
+                while (true)
+                {
+                    Console.WriteLine("\n Your options are: (Note for each topping it is an additional $0.50 ");
+                    Console.WriteLine(" B: Black Olives\n M: Mushrooms\n O: Onionns\n P: Peppers");
+
+                    string vegetableInput = ValidatingInput();
+                    switch (vegetableInput[0])
+                    {
+                        case 'B': vegetablesToppings[0] = !vegetablesToppings[0]; break;
+
+                        case 'M': vegetablesToppings[1] = !vegetablesToppings[1]; break;
+
+                        case 'O': vegetablesToppings[2] = !vegetablesToppings[2]; break;
+
+                        case 'P': vegetablesToppings[3] = !vegetablesToppings[3]; break;
+
+                        default: Console.WriteLine("Please Enter a Valid Input"); break;
+                    };
+
+                    Console.WriteLine("The Vegetable toppings you currently have selected are:\n"); // Displaying Vegetables Selected
+
+                    if (vegetablesToppings[0] == true)
+                    {
+                        Console.WriteLine("Black Olives\n");
+                        oliveTopping = "Black Olives";
+                    }
+                    else
+                        oliveTopping = "";
+
+                    if (vegetablesToppings[1] == true)
+                    {
+                        Console.WriteLine("Mushrooms\n");
+                        mushroomTopping = "Mushrooms";
+                    }
+                    else
+                        mushroomTopping = "";
+
+                    if (vegetablesToppings[2] == true)
+                    {
+                        Console.WriteLine("Onions\n");
+                        onionTopping = "Onions";
+                    }
+                    else
+                        onionTopping = "";
+
+                    if (vegetablesToppings[3] == true)
+                    {
+                        Console.WriteLine("Peppers\n");
+                        pepperTopping = "Peppers";
+                    }
+                    else
+                        pepperTopping = "";
+
+                    Console.WriteLine("Would you like more Vegetable toppings?");
+                    Console.WriteLine("'Y' for Yes or 'N' for No");
+
+                    string additionalVegetableInput = ValidatingInput();
+                    switch (additionalVegetableInput[0])
+                    {
+                        case 'Y': break;
+
+                        case 'N': return;
+                    };
+                };
+            };
+
+            if (input[0] == 'N')
+                return;
         }
 
         private static void PizzaMeatToppings(string message)
@@ -188,7 +367,9 @@ namespace PizzaCreator
         {
             Console.WriteLine("********************************************");
             Console.WriteLine(message);
+            Console.WriteLine("This is the size of pizza you currently have selected.");
             Console.WriteLine($"{sizeOfPizza} Pizza");
+            Console.WriteLine("'Y' for Yes or 'N' for No");
 
             string input = ValidatingInput();
             if (input[0] == 'Y')
