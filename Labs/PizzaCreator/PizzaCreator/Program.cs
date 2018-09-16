@@ -26,32 +26,115 @@ namespace PizzaCreator
                 Console.WriteLine("M: Modify Order");
                 Console.WriteLine("D: Display Order");
                 Console.WriteLine("Q: Quit");
+                Console.WriteLine($"\n\t Total: ${total}");
 
                 string input = ValidatingInput();
                 switch (input[0])
                 {
-                    case 'n':
                     case 'N': NewOrder(); return true;
 
-                    case 'm':
-                    //case 'M': ModifyOrder(); return true;
+                    case 'M': ModifyOrder(); return true;
 
-                    case 'd':
-                    //case 'D': DisplayOrder(); return true;
+                    case 'D': DisplayOrder(); return true;
 
-                    case 'q':
                     case 'Q':; return false;
 
                     default: Console.WriteLine("Invalid Input, please try to enter the given options again."); return true;
+                };
+            };
 
+        }
 
-                }
-            }
+        private static void ModifyOrder()
+        {
+            if (existingOrder == true)
+            {
+                DisplayOrder();
+                Console.WriteLine("Are you sure you want to change the order?");
+                Console.WriteLine("'Y' for Yes or 'N' for No");
+                string input = ValidatingInput();
+                
+                if (input[0] == 'Y')
+                {
+                    PizzaSize("Would you like to change the size of your pizza?");
+                };
 
+                if (input[0] == 'N')
+                    return;
+            };
+
+            if (existingOrder == false)
+            {
+                Console.WriteLine("You do not have an existing order: Returning to main menu.");
+                return;
+            };
+        }
+
+        private static void PizzaSize(string message)
+        {
+            Console.WriteLine("********************************************");
+            Console.WriteLine(message);
+            Console.WriteLine($"{sizeOfPizza} Pizza");
+
+            string input = ValidatingInput();
+            if (input[0] == 'Y')
+            {
+                while (true)
+                {
+                    Console.WriteLine("Size of Pizza: One is required");
+                    Console.WriteLine("\t * S: Small ($5)");
+                    Console.WriteLine("\t * M: Medium ($6.25)");
+                    Console.WriteLine("\t * L: Large ($8.75)");
+
+                    string newInput = ValidatingInput();
+                    switch (newInput[0])
+                    {
+                        case 'S': sizeOfPizza = "Small"; return;
+
+                        case 'M': sizeOfPizza = "Medium"; return;
+
+                        case 'L': sizeOfPizza = "Large"; return;
+
+                        default: Console.WriteLine("Please enter a valid input."); break;
+                    };
+                };
+            };
+
+            if (input[0] == 'N')
+            {
+                return;
+            };
         }
 
         private static void NewOrder()
         {
+            if (existingOrder == true)
+            {
+                Console.WriteLine("You already have an existing order.");
+                Console.WriteLine("Are you sure you want to delete the old order and start the new one?");
+
+                DisplayOrder();
+
+                Console.WriteLine("'Y' for Yes or 'N' for No");
+                string input = ValidatingInput();
+                if (input[0] == 'Y')
+                {
+                    PizzaSize();
+                    PizzaMeatToppings();
+                    PizzaVegetableToppings();
+                    PizzaPineapple();
+                    PizzaSauce();
+                    PizzaCheese();
+                    PizzaDelivery();
+                    TotalOrder();
+                    DisplayOrder();
+
+                    existingOrder = true;
+                }
+                else
+                    return;
+
+            }
             if (existingOrder == false)
             {
                 PizzaSize();
@@ -123,30 +206,43 @@ namespace PizzaCreator
             Console.WriteLine($"{sizeOfPizza} Pizza ${sizeOfPizzaCost}");
             Console.WriteLine(pizzaDelivery);
 
-            Console.WriteLine($"Meats: ${meatToppingCost} ");
+            Console.WriteLine($"\nMeats: ${meatToppingCost} ");
 
             if (!String.IsNullOrEmpty(baconTopping))
-                Console.WriteLine(baconTopping);
+                Console.WriteLine($"    {baconTopping}");
 
             if (!String.IsNullOrEmpty(hamTopping))
-                Console.WriteLine(hamTopping);
+                Console.WriteLine($"    {hamTopping}");
 
             if (!String.IsNullOrEmpty(pepperoniTopping))
-                Console.WriteLine(pepperoniTopping);
+                Console.WriteLine($"    {pepperoniTopping}");
 
             if (!String.IsNullOrEmpty(sausageTopping))
-                Console.WriteLine(sausageTopping);
+                Console.WriteLine($"    {sausageTopping}");
 
-            Console.WriteLine($"Vegetables: ${vegetableToppingCost} ");
+            Console.WriteLine($"\nVegetables: ${vegetableToppingCost} ");
 
             if (!String.IsNullOrEmpty(oliveTopping))
-                Console.WriteLine(oliveTopping);
+                Console.WriteLine($"    {oliveTopping}");
 
             if (!String.IsNullOrEmpty(mushroomTopping))
-                Console.WriteLine(mushroomTopping);
+                Console.WriteLine($"    {mushroomTopping}");
 
             if (!String.IsNullOrEmpty(onionTopping))
-                Console.WriteLine(onionTopping);
+                Console.WriteLine($"    {onionTopping}");
+
+            if (!String.IsNullOrEmpty(pepperTopping))
+                Console.WriteLine($"    {pepperTopping}");
+
+            Console.WriteLine($"Sauce: ${pizzaSauceCost}");
+            Console.WriteLine($"    {pizzaSauce}");
+
+            Console.WriteLine($"Cheese: ${pizzaCheeseCost}");
+            Console.WriteLine($"    {pizzaCheese}");
+
+            Console.WriteLine("----------------");
+            Console.WriteLine($"Total:\t ${total}");
+
 
             Console.WriteLine("********************************************");
         }
@@ -163,10 +259,8 @@ namespace PizzaCreator
                 string input = ValidatingInput();
                 switch (input[0])
                 {
-                    case 'd':
                     case 'D': pizzaDelivery = "Delivery"; return;
 
-                    case 't':
                     case 'T': pizzaDelivery = "Take out"; return;
 
                     default: Console.WriteLine("Please enter a valid input"); break;
@@ -186,10 +280,8 @@ namespace PizzaCreator
                 string input = ValidatingInput();
                 switch (input[0])
                 {
-                    case 'r':
                     case 'R': pizzaCheese = "Regular"; return;
 
-                    case 'e':
                     case 'E': pizzaCheese = "Extra"; return;
 
                     default: Console.WriteLine("Please enter a valid input"); break;
@@ -206,10 +298,8 @@ namespace PizzaCreator
             string input = ValidatingInput();
             switch (input[0])
             {
-                case 'y':
-                case 'Y': Console.WriteLine("Too bad\n"); return;
+                case 'Y': Console.WriteLine("\nToo bad\n"); return;
 
-                case 'n':
                 case 'N': return;
             };
         }
@@ -227,13 +317,10 @@ namespace PizzaCreator
                 string input = ValidatingInput();
                 switch (input[0])
                 {
-                    case 't':
                     case 'T': pizzaSauce = "Traditional"; return;
 
-                    case 'g':
                     case 'G': pizzaSauce = "Garlic"; return;
 
-                    case 'o':
                     case 'O': pizzaSauce = "Oregano"; return;
 
                     default: Console.WriteLine("Please enter a valid input"); break;
@@ -248,9 +335,8 @@ namespace PizzaCreator
             Console.WriteLine("'Y' for Yes or 'N' for No");
 
             string input = ValidatingInput();
-            string confirmationInput = input.ToUpper();
 
-            if (confirmationInput[0] == 'Y')
+            if (input[0] == 'Y')
             {
                     while (true)
                     {
@@ -260,16 +346,12 @@ namespace PizzaCreator
                         string vegetableInput = ValidatingInput();
                         switch (vegetableInput[0])
                         {
-                            case 'b':
                             case 'B': vegetablesToppings[0] = !vegetablesToppings[0]; break;
 
-                            case 'm':
                             case 'M': vegetablesToppings[1] = !vegetablesToppings[1]; break;
 
-                            case 'o':
                             case 'O': vegetablesToppings[2] = !vegetablesToppings[2]; break;
 
-                            case 'p':
                             case 'P': vegetablesToppings[3] = !vegetablesToppings[3]; break;
 
                             default: Console.WriteLine("Please Enter a Valid Input"); break;
@@ -315,16 +397,14 @@ namespace PizzaCreator
                         string additionalVegetableInput = ValidatingInput();
                         switch (additionalVegetableInput[0])
                         {
-                            case 'y':
                             case 'Y': break;
 
-                            case 'n':
                             case 'N': return;
                         };
                     };
             };
 
-            if (confirmationInput[0] == 'N')
+            if (input[0] == 'N')
                 return;
         }
 
@@ -341,13 +421,10 @@ namespace PizzaCreator
                 string input = ValidatingInput();
                 switch (input[0])
                 {
-                    case 's':
                     case 'S':  sizeOfPizza = "Small"; return;  
 
-                    case 'm':
                     case 'M':  sizeOfPizza = "Medium"; return;
 
-                    case 'l':
                     case 'L':  sizeOfPizza = "Large"; return;
 
                     default: Console.WriteLine("Please enter a valid input."); break;
@@ -362,9 +439,8 @@ namespace PizzaCreator
             Console.WriteLine("'Y' for Yes or 'N' for No");
 
             string input = ValidatingInput();
-            string confirmationInput = input.ToUpper();
 
-            if (confirmationInput[0] == 'Y')
+            if (input[0] == 'Y')
             {
                     while (true)
                     { 
@@ -374,16 +450,12 @@ namespace PizzaCreator
                         string meatInput = ValidatingInput();
                         switch (meatInput[0]) // Toggling Meats Selected
                         {
-                            case 'b':
                             case 'B': meatToppings[0] = !meatToppings[0]; break;
 ;
-                            case 'h':
                             case 'H': meatToppings[1] = !meatToppings[1]; break;
                               
-                            case 'p':
                             case 'P': meatToppings[2] = !meatToppings[2]; break;
 
-                            case 's':
                             case 'S': meatToppings[3] = !meatToppings[3]; break;
                                 
                             default: Console.WriteLine("Please enter a valid input."); break;
@@ -429,10 +501,8 @@ namespace PizzaCreator
                         string additionalMeatInput = ValidatingInput();
                         switch (additionalMeatInput[0])
                         {
-                            case 'y':
                             case 'Y': break;
 
-                            case 'n':
                             case 'N': return;
 
                             default: Console.WriteLine("Please enter a valid input"); break;
@@ -440,7 +510,7 @@ namespace PizzaCreator
                     };
             };
 
-            if (confirmationInput[0] == 'N')
+            if (input[0] == 'N')
                 return;
         }
 
@@ -451,7 +521,10 @@ namespace PizzaCreator
                 string input = Console.ReadLine();
 
                 if (!String.IsNullOrEmpty(input))
-                    return input;
+                {
+                    string newInput = input.ToUpper();
+                    return newInput;
+                };
 
             };
         }
