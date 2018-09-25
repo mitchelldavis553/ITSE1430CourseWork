@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace ITSE1430.MovieLib
 {
-    class Movie
+    public class Movie
     {
         public string Name;
         //public System.String Name;
 
+        public string Description;
+
+        public int ReleaseYear;
+        public int RunLength;
+
+        //Both of these are private: Only accessible by this type
+        // int someValue;
+        // private int someValue2;
     }
 }

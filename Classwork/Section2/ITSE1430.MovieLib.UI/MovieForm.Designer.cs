@@ -53,7 +53,7 @@
             // 
             this._txtName.Location = new System.Drawing.Point(104, 41);
             this._txtName.Name = "_txtName";
-            this._txtName.Size = new System.Drawing.Size(163, 20);
+            this._txtName.Size = new System.Drawing.Size(183, 20);
             this._txtName.TabIndex = 1;
             // 
             // label2
@@ -68,14 +68,15 @@
             // _txtDescription
             // 
             this._txtDescription.Location = new System.Drawing.Point(104, 78);
+            this._txtDescription.Multiline = true;
             this._txtDescription.Name = "_txtDescription";
-            this._txtDescription.Size = new System.Drawing.Size(100, 20);
+            this._txtDescription.Size = new System.Drawing.Size(204, 75);
             this._txtDescription.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 123);
+            this.label3.Location = new System.Drawing.Point(27, 176);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 4;
@@ -83,31 +84,32 @@
             // 
             // _txtReleaseYear
             // 
-            this._txtReleaseYear.Location = new System.Drawing.Point(104, 120);
+            this._txtReleaseYear.Location = new System.Drawing.Point(104, 173);
             this._txtReleaseYear.Name = "_txtReleaseYear";
-            this._txtReleaseYear.Size = new System.Drawing.Size(100, 20);
+            this._txtReleaseYear.Size = new System.Drawing.Size(72, 20);
             this._txtReleaseYear.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 165);
+            this.label4.Location = new System.Drawing.Point(27, 213);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Run Length";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // _txtRunLength
             // 
-            this._txtRunLength.Location = new System.Drawing.Point(104, 165);
+            this._txtRunLength.Location = new System.Drawing.Point(104, 210);
             this._txtRunLength.Name = "_txtRunLength";
-            this._txtRunLength.Size = new System.Drawing.Size(100, 20);
+            this._txtRunLength.Size = new System.Drawing.Size(72, 20);
             this._txtRunLength.TabIndex = 7;
             this._txtRunLength.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // _buttonSave
             // 
-            this._buttonSave.Location = new System.Drawing.Point(79, 221);
+            this._buttonSave.Location = new System.Drawing.Point(75, 253);
             this._buttonSave.Name = "_buttonSave";
             this._buttonSave.Size = new System.Drawing.Size(75, 23);
             this._buttonSave.TabIndex = 8;
@@ -117,7 +119,7 @@
             // 
             // _buttonCancel
             // 
-            this._buttonCancel.Location = new System.Drawing.Point(167, 221);
+            this._buttonCancel.Location = new System.Drawing.Point(166, 253);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 9;
@@ -129,7 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 303);
+            this.ClientSize = new System.Drawing.Size(414, 302);
             this.ControlBox = false;
             this.Controls.Add(this._buttonCancel);
             this.Controls.Add(this._buttonSave);
