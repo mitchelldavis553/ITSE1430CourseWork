@@ -124,7 +124,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Movie Library";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this._mainMenu.ResumeLayout(false);
             this._mainMenu.PerformLayout();
             this.ResumeLayout(false);
