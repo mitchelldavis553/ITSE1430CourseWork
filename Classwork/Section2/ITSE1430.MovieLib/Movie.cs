@@ -8,57 +8,45 @@ namespace ITSE1430.MovieLib
 {
     public class Movie
     {
-        public string GetName()
+        public string Name
         {
-            return _name ?? "";
-        }
-
-        public void SetName(string value)
-        {
-            _name = value;
+            get { return _name ?? ""; } // string get ()
+            set { _name = value; } // void set ( string value )
         }
         private string _name;
 
-        public string GetDescription()
+        public string Description
         {
-            return _description ?? "";
-        }
-
-        public void SetDescription(string value)
-        {
-            //this._description = value;
-            //this.
-            _description = value;
+            get { return _description ?? ""; }
+            set { _description = value; }
         }
         private string _description;
 
-        public int GetReleaseYear()
+        public int ReleaseYear
         {
-            return _releaseYear;
+            get { return _releaseYear; }
+            set
+            {
+                if (value >= 1900)
+                    _releaseYear = value;
+            }
         }
+        private int _releaseYear = 1900;
 
-        public void SetReleaseYear(int value)
+        public int RunLength
         {
-            if (value >= 1900)
-                _releaseYear = value;
-        }
-        private int _releaseYear;
-
-        public int GetRunLength()
-        {
-            return _runLength;
-        }
-
-        public void SetRunLength(int value)
-        {
-            if (value >= 0)
-                _runLength = value;
+            get { return _runLength; }
+            set
+            {
+                if (value >= 0)
+                    _runLength = value;
+            }
         }
         private int _runLength;
 
         //Both of these are private: Only accessible by this type
-        int someValue;
-        private int someValue2;
+        //int someValue;
+        //private int someValue2;
 
         //void Foo()
         //{
