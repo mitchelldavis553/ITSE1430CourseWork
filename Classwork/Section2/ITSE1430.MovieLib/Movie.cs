@@ -22,27 +22,20 @@ namespace ITSE1430.MovieLib
         }
         private string _description;
 
-        public int ReleaseYear
-        {
-            get { return _releaseYear; }
-            set
-            {
-                if (value >= 1900)
-                    _releaseYear = value;
-            }
-        }
-        private int _releaseYear = 1900;
+        public int ReleaseYear { get; set; } = 1900; // initialize the backing field
+        //{
+        //    get { return _releaseYear; }
+        //    set
+        //    {
+        //        if (value >= 1900)
+        //            _releaseYear = value;
+        //    }
+        //}
+        //private int _releaseYear = 1900;
 
-        public int RunLength
-        {
-            get { return _runLength; }
-            set
-            {
-                if (value >= 0)
-                    _runLength = value;
-            }
-        }
-        private int _runLength;
+        //Auto Property Syntax
+        public int RunLength { get; set; }
+        //private int _runLength;
 
         //Both of these are private: Only accessible by this type
         //int someValue;
@@ -56,5 +49,18 @@ namespace ITSE1430.MovieLib
 
             //var y = someValue;
         //}
+
+        public int Id { get; private set; }
+        //RESTRICTIONS on Mixed Access
+        //************************************
+        // Only get one
+        //Always be more restrictive
+        //************************************
+
+        //Calculated Property
+        public bool IsColor
+        {
+            get { return ReleaseYear > 1940; }
+        }
     }
 }

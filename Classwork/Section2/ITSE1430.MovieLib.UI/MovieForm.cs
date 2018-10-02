@@ -19,16 +19,6 @@ namespace ITSE1430.MovieLib.UI
 
         public Movie Movie;
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void OnCancel( object sender, EventArgs e )
         {
             DialogResult = DialogResult.Cancel;

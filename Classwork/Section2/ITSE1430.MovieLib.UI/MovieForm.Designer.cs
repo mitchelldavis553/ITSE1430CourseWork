@@ -97,7 +97,6 @@
             this.label4.Size = new System.Drawing.Size(63, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Run Length";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // _txtRunLength
             // 
@@ -105,7 +104,6 @@
             this._txtRunLength.Name = "_txtRunLength";
             this._txtRunLength.Size = new System.Drawing.Size(72, 20);
             this._txtRunLength.TabIndex = 7;
-            this._txtRunLength.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // _buttonSave
             // 
