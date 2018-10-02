@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
-    class Character
+   public class Character
     {
-
+        public string Name
+        {
+            get { return _name ?? ""; }
+            set { _name = value; }
+        }
+        private string _name;
     }
 }
