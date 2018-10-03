@@ -38,6 +38,7 @@
             this._txtRunLength = new System.Windows.Forms.TextBox();
             this._buttonSave = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
+            this._chkOwned = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -107,7 +108,7 @@
             // 
             // _buttonSave
             // 
-            this._buttonSave.Location = new System.Drawing.Point(75, 253);
+            this._buttonSave.Location = new System.Drawing.Point(75, 311);
             this._buttonSave.Name = "_buttonSave";
             this._buttonSave.Size = new System.Drawing.Size(75, 23);
             this._buttonSave.TabIndex = 8;
@@ -117,7 +118,7 @@
             // 
             // _buttonCancel
             // 
-            this._buttonCancel.Location = new System.Drawing.Point(166, 253);
+            this._buttonCancel.Location = new System.Drawing.Point(156, 311);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 9;
@@ -125,12 +126,23 @@
             this._buttonCancel.UseVisualStyleBackColor = true;
             this._buttonCancel.Click += new System.EventHandler(this.OnCancel);
             // 
+            // _chkOwned
+            // 
+            this._chkOwned.AutoSize = true;
+            this._chkOwned.Location = new System.Drawing.Point(104, 255);
+            this._chkOwned.Name = "_chkOwned";
+            this._chkOwned.Size = new System.Drawing.Size(60, 17);
+            this._chkOwned.TabIndex = 10;
+            this._chkOwned.Text = "Owned";
+            this._chkOwned.UseVisualStyleBackColor = true;
+            // 
             // MovieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 302);
+            this.ClientSize = new System.Drawing.Size(414, 389);
             this.ControlBox = false;
+            this.Controls.Add(this._chkOwned);
             this.Controls.Add(this._buttonCancel);
             this.Controls.Add(this._buttonSave);
             this.Controls.Add(this._txtRunLength);
@@ -161,5 +173,6 @@
         private System.Windows.Forms.TextBox _txtRunLength;
         private System.Windows.Forms.Button _buttonSave;
         private System.Windows.Forms.Button _buttonCancel;
+        private System.Windows.Forms.CheckBox _chkOwned;
     }
 }

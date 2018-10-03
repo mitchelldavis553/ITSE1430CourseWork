@@ -17,7 +17,7 @@ namespace ITSE1430.MovieLib.UI
             InitializeComponent();
         }
 
-        public Movie Movie;
+        public Movie Movie { get; set; }
 
         private void OnCancel( object sender, EventArgs e )
         {
@@ -32,7 +32,7 @@ namespace ITSE1430.MovieLib.UI
             //var name = movie2.GetName();
 
             //Name is required
-            movie.Name = _txtName.Text;
+            movie.Name = _txtName.Text; // The text property is accessed by the member access operator so the data stored is found there
             //movie.SetName(_txtName.Text);
             if (String.IsNullOrEmpty(movie.Name))
                 return;
@@ -48,6 +48,8 @@ namespace ITSE1430.MovieLib.UI
             movie.RunLength = GetInt32(_txtRunLength);
             if (movie.RunLength < 0)
                 return;
+
+            movie.IsOwned = _chkOwned.Checked;
 
             Movie = movie;
 

@@ -40,10 +40,23 @@ namespace ITSE1430.MovieLib.UI
                 return;
 
             //MessageBox.Show("Adding  Movie");
-            Movie = form.Movie;
+            _database.Add(form.Movie);
             //Movie.Name = "";
+            RefreshMovies(); // The MainForm Load is only loaded once when it is called. Have to make the data it will update/display available
         }
 
-        private Movie Movie;
+        private MovieDatabase _database = new MovieDatabase();
+
+        private void MainForm_Load( object sender, EventArgs e )
+        {
+            RefreshMovies();
+        }
+
+        private void RefreshMovies()
+        {
+            var movies = _database.GetAll();
+
+            _listMovies.Items.AddRange(movies); // Listbox property that displays the data stored in the Items property and adds an array of items to our list
+        }
     }
 }
