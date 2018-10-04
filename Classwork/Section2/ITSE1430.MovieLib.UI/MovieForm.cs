@@ -67,5 +67,17 @@ namespace ITSE1430.MovieLib.UI
 
             return -1;
         }
+
+        private void MovieForm_Load( object sender, EventArgs e )
+        {
+            if (Movie != null) // If we have a movie that we selected that isn't null. Display the data we saved (Add starts with null)
+            {
+                _txtName.Text = Movie.Name;
+                _txtDescription.Text = Movie.Description;
+                _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
+                _txtRunLength.Text = Movie.RunLength.ToString();
+                _chkOwned.Checked = Movie.IsOwned;
+            };
+        }
     }
 }

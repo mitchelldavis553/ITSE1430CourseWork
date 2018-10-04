@@ -42,9 +42,30 @@ namespace ITSE1430.MovieLib
             foreach (var movie in _movies) // copies the non-null elements into new temp array
             {
                 if (movie != null)
-                    temp[index++] = movie;
+                    temp[index++] = movie; // sets the temp and post increments it up
             };
             return temp;
+        }
+
+        public void Remove (string name)
+        {
+            for (var index = 0; index < _movies.Length; ++index)
+            {
+                if (String.Compare(name, _movies[index]?.Name, true) == 0) // third parameter ignores case, comparing names and making it null
+                {
+                    _movies[index] = null;
+                    return;
+                };
+            };
+        }
+
+        public void Edit (string name, Movie movie)
+        {
+            //Find movie by name
+            Remove(name);
+
+            //Replace it
+            Add(movie);
         }
     }
 }
