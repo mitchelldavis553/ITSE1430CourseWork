@@ -17,6 +17,7 @@ namespace ITSE1430.MovieLib.UI
             InitializeComponent();
         }
 
+
         private void exitToolStripMenuItem_Click( object sender, EventArgs e )
         {
             if (MessageBox.Show("Are you sure you want to exit?",
@@ -26,7 +27,7 @@ namespace ITSE1430.MovieLib.UI
             Close();
         }
 
-        private void OnHelpAbout ( object sender, EventArgs e )
+        private void OnHelpAbout( object sender, EventArgs e )
         {
             //aboutToolStripMenuItem.
             MessageBox.Show(this, "Sorry", "Help", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); // Basic Message Box syntax
@@ -47,11 +48,23 @@ namespace ITSE1430.MovieLib.UI
 
         private MovieDatabase _database = new MovieDatabase();
 
-        private void MainForm_Load( object sender, EventArgs e )
+        //This method can be overridden in a derived type
+        protected virtual void SomeFunction()
+        { }
+
+        //This method MUST be overridden in a derived type
+        //protected abstract void SomeAbstractFunction();
+       
+       
+        protected override void OnLoad( EventArgs e )
         {
-            _listMovies.DisplayMember = "Name";
+            base.OnLoad(e);
+
+            _listMovies.DisplayMember = "Name"; // Setting the Display Member Property to Name property. (When it displays it looks for the name property)
             RefreshMovies();
         }
+
+        
 
         private void RefreshMovies()
         {
@@ -63,23 +76,45 @@ namespace ITSE1430.MovieLib.UI
 
         private void OnMovieDelete( object sender, EventArgs e )
         {
+            DeleteMovie();
+        }
+
+        private void DeleteMovie()
+        {
             var item = GetSelectedMovie(); // Changing it to type Movie so we can have access to the name functionality
             if (item == null)
                 return;
 
-            _database.Remove(item.Name); // Access to name downhere through member access
+            _database.Remove(item.Name); // Access to name down here through member access
             RefreshMovies();
         }
 
         private void OnMovieEdit ( object sender, EventArgs e )
         {
+            EditMovie();
+        }
+
+        private Movie GetSelectedMovie()
+        {
+            return _listMovies.SelectedItem as Movie; // Changing it to type Movie so we can have access to the name functionality   
+        }
+
+        private void OnMovieDoubleClick( object sender, EventArgs e )
+        {
+            EditMovie();
+        }
+
+        private void EditMovie()
+        {
+            //get selected movie, if any
             var item = GetSelectedMovie();
             if (item == null)
                 return;
 
+            // Show form with selected movie
             var form = new MovieForm();
             form.Movie = item;
-            
+
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
@@ -88,9 +123,12 @@ namespace ITSE1430.MovieLib.UI
             RefreshMovies(); // The MainForm Load is only loaded once when it is called. Have to make the data it will update/display available
         }
 
-        private Movie GetSelectedMovie()
+        private void OnListKeyUp( object sender, KeyEventArgs e )
         {
-            return _listMovies.SelectedItem as Movie; // Changing it to type Movie so we can have access to the name functionality   
+            if (e.KeyData == Keys.Delete)
+            {
+                DeleteMovie();
+            };
         }
     }
 }

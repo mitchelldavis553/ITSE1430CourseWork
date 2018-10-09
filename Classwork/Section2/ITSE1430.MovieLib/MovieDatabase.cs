@@ -8,6 +8,32 @@ namespace ITSE1430.MovieLib
 {
     public class MovieDatabase
     {
+        public MovieDatabase() : this(true)
+        { }
+        private static Movie[] GetSeedMovies( bool seed)
+        {
+            if (!seed)
+                return new Movie[0];
+
+            var movies = new Movie[2];
+            movies[0].Name = "Dark Knight";
+            movies[0].RunLength = 170;
+            movies[0].ReleaseYear = 2015;
+
+            movies[1] = new Movie();
+            movies[1].Name = "Harry Potter";
+            movies[1].RunLength = 170;
+            movies[1].ReleaseYear = 2011;
+
+            return movies;
+        }
+        public MovieDatabase ( bool seed ) : this (GetSeedMovies(seed)) 
+        { }
+        public MovieDatabase( Movie[] movies)
+        {
+            for (var index = 0; index < movies.Length; ++index)
+                _movies[index] = movies[index];
+        }
         public void Add (Movie movie)
         {
             var index = FindNextFreeIndex();  // returning the index from counter so it could be -1

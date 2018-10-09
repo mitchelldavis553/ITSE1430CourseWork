@@ -125,6 +125,8 @@
             this._listMovies.Name = "_listMovies";
             this._listMovies.Size = new System.Drawing.Size(837, 523);
             this._listMovies.TabIndex = 1;
+            this._listMovies.DoubleClick += new System.EventHandler(this.OnMovieDoubleClick);
+            this._listMovies.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnListKeyUp);
             // 
             // MainForm
             // 
@@ -137,7 +139,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Movie Library";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this._mainMenu.ResumeLayout(false);
             this._mainMenu.PerformLayout();
             this.ResumeLayout(false);
