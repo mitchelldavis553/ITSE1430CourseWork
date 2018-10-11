@@ -16,6 +16,8 @@ namespace ITSE1430.MovieLib
                 return new Movie[0];
 
             var movies = new Movie[2];
+
+            movies[0] = new Movie();
             movies[0].Name = "Dark Knight";
             movies[0].RunLength = 170;
             movies[0].ReleaseYear = 2015;

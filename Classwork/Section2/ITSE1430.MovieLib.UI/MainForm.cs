@@ -60,7 +60,7 @@ namespace ITSE1430.MovieLib.UI
         {
             base.OnLoad(e);
 
-            _listMovies.DisplayMember = "Name"; // Setting the Display Member Property to Name property. (When it displays it looks for the name property)
+            _listMovies.DisplayMember = "Name"; // Setting the Display Member Property to Name property. (When it displays it looks for the name property to display)
             RefreshMovies();
         }
 
