@@ -29,24 +29,17 @@ namespace ITSE1430.MovieLib.UI
         {
             if (!ValidateChildren()) //Form level control, cycles through all of them and validates them
                 return;
-
-            var movie = new Movie();
-            //var movie2 = new Movie();
-            //var name = movie2.GetName();
-
-            //Name is required
-            movie.Name = _txtName.Text; // The text property is accessed by the member access operator so the data stored is found there
-            //movie.SetName(_txtName.Text);
-            movie.Description = _txtDescription.Text;
-            //Release year is numeric, if set
-            movie.ReleaseYear = GetInt32(_txtReleaseYear);
-            //Run Length, if set
-            movie.RunLength = GetInt32(_txtRunLength);
-
-            movie.IsOwned = _chkOwned.Checked;
+            //Object Initializer Syntax, semi-colons go to commas, variablename. delete
+            var movie = new Movie()
+            {
+                Name = _txtName.Text,
+                Description = _txtDescription.Text,
+                ReleaseYear = GetInt32(_txtReleaseYear),
+                RunLength = GetInt32(_txtRunLength),
+                IsOwned = _chkOwned.Checked,
+            };
 
             Movie = movie;
-
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -92,7 +85,7 @@ namespace ITSE1430.MovieLib.UI
             } else
                 _errors.SetError(control, "");
 
-            
+
         }
 
         private void OnValidatingReleaseYear( object sender, CancelEventArgs e )
@@ -103,8 +96,7 @@ namespace ITSE1430.MovieLib.UI
             {
                 _errors.SetError(control, " Must be > 1900");
                 e.Cancel = true;
-            }
-            else
+            } else
                 _errors.SetError(control, "");
 
         }
