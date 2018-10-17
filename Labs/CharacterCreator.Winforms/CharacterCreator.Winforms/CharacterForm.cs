@@ -5,6 +5,7 @@ namespace CharacterCreator.Winforms
 {
     public partial class CharacterForm : Form
     {
+        public Character Character { get; set; }
         public CharacterForm()
         {
             InitializeComponent();
@@ -21,14 +22,10 @@ namespace CharacterCreator.Winforms
             var character = new Character();
 
             character.Name = _txtName.Text;
-
             character.Profession = _professionComboBox.Text;
-            if (character.Profession == "")
-                MessageBox.Show(this, "Please enter a value for the profession of your character.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             character.Race = _raceComboBox.Text;
-            if (character.Race == "")
-                MessageBox.Show(this, "Please enter a value for the race of your character.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            Character = character;
 
         }
     }
