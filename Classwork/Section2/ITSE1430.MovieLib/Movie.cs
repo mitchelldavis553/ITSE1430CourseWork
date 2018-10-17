@@ -22,7 +22,7 @@ namespace ITSE1430.MovieLib
         }
         private string _description;
 
-        public int ReleaseYear { get; set; } = 1900; // initialize the backing field
+        public int ReleaseYear { get; set; } = 1900; // initializes the backing field to store the data
         //{
         //    get { return _releaseYear; }
         //    set
@@ -35,6 +35,8 @@ namespace ITSE1430.MovieLib
 
         //Auto Property Syntax
         public int RunLength { get; set; }
+
+        public bool IsOwned { get; set; }
         //private int _runLength;
 
         //Both of these are private: Only accessible by this type
