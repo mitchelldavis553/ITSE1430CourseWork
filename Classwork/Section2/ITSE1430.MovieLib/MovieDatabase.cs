@@ -6,87 +6,54 @@ using System.Threading.Tasks;
 
 namespace ITSE1430.MovieLib
 {
-    public class MovieDatabase
+    public abstract class MovieDatabase
     {
-        public MovieDatabase() : this(true)
-        { }
-        private static Movie[] GetSeedMovies( bool seed )
-        {
-            if (!seed)
-                return new Movie[0];
-
-            //Collection Initializer Syntax
-            return new[] { // Inferring Array Type and Size, since it is an expression we can return it
-           new Movie()
-            {
-                Name = "Dark Knight",
-                RunLength = 170,
-                ReleaseYear = 2015,
-            },
-            new Movie()
-            {
-                Name = "Harry Potter",
-                RunLength = 170,
-                ReleaseYear = 2011,
-            },
-          };
-        }
-        public MovieDatabase( bool seed ) : this(GetSeedMovies(seed))
-        { }
-        public MovieDatabase( Movie[] movies )
-        {
-            _items.AddRange(movies);
-        }
         public void Add( Movie movie )
         {
-            _items.Add(movie);
+            //TODO: Validate
+            if (movie == null)
+                return;
+
+            AddCore(movie);
         }
 
-        //private Movie[] _movies = new Movie[100];
-        private List<Movie> _items = new List<Movie>();
+        protected abstract void AddCore( Movie movie );
 
         public Movie[] GetAll()
         {
-            var count = _items.Count;
-
-            var temp = new Movie[count];
-            var index = 0;
-            foreach (var movie in _items) // copies the non-null elements into new temp array
-            {
-                temp[index++] = movie;
-            };
-
-            return temp;
+            return GetAllCore();
         }
+
+        protected abstract Movie[] GetAllCore();
 
         public void Remove( string name )
         {
-            var movie = FindMovie(name);
-            if (movie != null)
-                _items.Remove(movie);
+            //TODO: Validate
+            if (String.IsNullOrEmpty(name))
+                return;
+
+            RemoveCore(name);
         }
 
-        private Movie FindMovie( string name )
-        {
-            //var pairs = new Dictionary<string, Movie>();
-
-            foreach (var movie in _items)
-            {
-                if (String.Compare(name, movie.Name, true) == 0)
-                    return movie;
-            };
-
-            return null;
-        }
+        protected abstract void RemoveCore( string name );
 
         public void Edit( string name, Movie movie )
         {
-            //Find movie by name
-            Remove(name);
+            //TODO: Validate
+            if (movie == null)
+                return;
+            if (String.IsNullOrEmpty(name))
+                return;
 
-            //Replace it
-            Add(movie);
+            var existing = FindByName(name);
+            if (existing == null)
+                return;
+
+            EditCore(existing, movie);
         }
+
+        protected abstract Movie FindByName( string name );
+        protected abstract void EditCore( Movie oldMovie, Movie movie );
     }
 
 }
