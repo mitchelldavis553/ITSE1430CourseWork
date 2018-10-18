@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3BF916D-0195-4981-AAE7-86AC83340F61}</ProjectGuid>
+    <ProjectGuid>{16715FCA-98AD-4FF1-920E-7D1236E2BEBA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ITSE1430.MovieLib</RootNamespace>
-    <AssemblyName>ITSE1430.MovieLib</AssemblyName>
+    <RootNamespace>ITSE1430.MovieLib.Memory</RootNamespace>
+    <AssemblyName>ITSE1430.MovieLib.Memory</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Movie.cs" />
-    <Compile Include="MovieDatabase.cs" />
+    <Compile Include="MemoryMovieDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeedDatabase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ITSE1430.MovieLib\ITSE1430.MovieLib.csproj">
+      <Project>{f3bf916d-0195-4981-aae7-86ac83340f61}</Project>
+      <Name>ITSE1430.MovieLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

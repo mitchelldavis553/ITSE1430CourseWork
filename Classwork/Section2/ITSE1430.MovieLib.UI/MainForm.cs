@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ITSE1430.MovieLib.Memory;
 
 namespace ITSE1430.MovieLib.UI
 {
@@ -46,7 +40,7 @@ namespace ITSE1430.MovieLib.UI
             RefreshMovies(); // The MainForm Load is only loaded once when it is called. Have to make the data it will update/display available
         }
 
-        private MovieDatabase _database = new MovieDatabase();
+        private MovieDatabase _database = new MemoryMovieDatabase();
 
         //This method can be overridden in a derived type
         protected virtual void SomeFunction()
@@ -59,6 +53,9 @@ namespace ITSE1430.MovieLib.UI
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad(e);
+
+            //Seed database
+            SeedDatabase.Seed(_database);
 
             _listMovies.DisplayMember = "Name"; // Setting the Display Member Property to Name property. (When it displays it looks for the name property to display)
             RefreshMovies();
