@@ -8,10 +8,21 @@ namespace CharacterCreator
 {
     public class CharacterDatabase
     {
+        public CharacterDatabase () : this(true) 
+        { }
+
+        public CharacterDatabase ( bool seed ) : this(GetSeedCharacter(seed))
+        { }
+        
+        public CharacterDatabase ( Character[] characters)
+        {
+            for (var index = 0; index < characters.Length; ++index)
+                _character[index] = characters[index];
+        }
         public void Add( Character character )
         {
             var index = FindNextFreeIndex();
-            if (index > 0)
+            if (index >= 0)
                 _character[index] = character;
         }
         public Character[] GetAllElements()
@@ -44,5 +55,25 @@ namespace CharacterCreator
             return -1;
         }
         private Character[] _character = new Character[100];
+
+        private static Character[] GetSeedCharacter (bool seed)
+        {
+            if (!seed)
+                return new Character[0];
+
+            var character = new Character[1];
+
+            character[0] = new Character();
+            character[0].Name = "Exampleron";
+            character[0].Profession = "Hunter";
+            character[0].Race = "Human";
+            character[0].Strength = 50;
+            character[0].Intelligence = 50;
+            character[0].Agility = 50;
+            character[0].Constitution = 50;
+            character[0].Charisma = 50;
+
+            return character;
+        }
     }
 }

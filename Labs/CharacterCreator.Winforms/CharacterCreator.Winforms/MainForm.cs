@@ -17,6 +17,14 @@ namespace CharacterCreator.Winforms
             InitializeComponent();
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            _listCharacters.DisplayMember = "Name";
+            RefreshCharacters();
+        }
+
         private void OnExit(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to exit?", "Close", MessageBoxButtons.YesNo) == DialogResult.No)
@@ -39,8 +47,21 @@ namespace CharacterCreator.Winforms
                 return;
 
             _database.Add(form.Character);
-
+            RefreshCharacters();
         }
+
+        private void RefreshCharacters()
+        {
+            var characters = _database.GetAllElements();
+            _listCharacters.Items.Clear();
+            _listCharacters.Items.AddRange(characters);
+        }
+
         private CharacterDatabase _database = new CharacterDatabase();
+
+        private Character GetSelectedCharacter()
+        {
+            return _listCharacters.SelectedItem as Character;
+        }
     }
 }

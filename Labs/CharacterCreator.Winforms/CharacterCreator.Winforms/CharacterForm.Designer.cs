@@ -60,6 +60,7 @@
             // 
             // _txtName
             // 
+            this._txtName.CausesValidation = false;
             this._txtName.Location = new System.Drawing.Point(75, 39);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(118, 20);
