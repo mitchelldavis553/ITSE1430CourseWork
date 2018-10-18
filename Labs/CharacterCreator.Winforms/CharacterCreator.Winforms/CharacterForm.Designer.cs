@@ -63,7 +63,8 @@
             this._txtName.Location = new System.Drawing.Point(75, 39);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(118, 20);
-            this._txtName.TabIndex = 1;
+            this._txtName.TabIndex = 0;
+            this._txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateName);
             // 
             // label2
             // 
@@ -87,7 +88,7 @@
             this._professionComboBox.Location = new System.Drawing.Point(75, 81);
             this._professionComboBox.Name = "_professionComboBox";
             this._professionComboBox.Size = new System.Drawing.Size(120, 21);
-            this._professionComboBox.TabIndex = 3;
+            this._professionComboBox.TabIndex = 1;
             // 
             // label3
             // 
@@ -110,7 +111,7 @@
             this._raceComboBox.Location = new System.Drawing.Point(77, 127);
             this._raceComboBox.Name = "_raceComboBox";
             this._raceComboBox.Size = new System.Drawing.Size(117, 21);
-            this._raceComboBox.TabIndex = 5;
+            this._raceComboBox.TabIndex = 2;
             // 
             // label4
             // 
@@ -126,7 +127,7 @@
             this.button1.Location = new System.Drawing.Point(41, 358);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 29);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 8;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnSave);
@@ -136,7 +137,7 @@
             this.button2.Location = new System.Drawing.Point(154, 358);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(116, 28);
-            this.button2.TabIndex = 8;
+            this.button2.TabIndex = 9;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.OnCancel);
@@ -146,7 +147,7 @@
             this._txtStrength.Location = new System.Drawing.Point(48, 258);
             this._txtStrength.Name = "_txtStrength";
             this._txtStrength.Size = new System.Drawing.Size(100, 20);
-            this._txtStrength.TabIndex = 9;
+            this._txtStrength.TabIndex = 3;
             // 
             // label5
             // 
@@ -198,28 +199,28 @@
             this._txtIntelligence.Location = new System.Drawing.Point(204, 257);
             this._txtIntelligence.Name = "_txtIntelligence";
             this._txtIntelligence.Size = new System.Drawing.Size(100, 20);
-            this._txtIntelligence.TabIndex = 15;
+            this._txtIntelligence.TabIndex = 4;
             // 
             // _txtAgility
             // 
             this._txtAgility.Location = new System.Drawing.Point(350, 257);
             this._txtAgility.Name = "_txtAgility";
             this._txtAgility.Size = new System.Drawing.Size(100, 20);
-            this._txtAgility.TabIndex = 16;
+            this._txtAgility.TabIndex = 5;
             // 
             // _txtConstitution
             // 
             this._txtConstitution.Location = new System.Drawing.Point(523, 257);
             this._txtConstitution.Name = "_txtConstitution";
             this._txtConstitution.Size = new System.Drawing.Size(100, 20);
-            this._txtConstitution.TabIndex = 17;
+            this._txtConstitution.TabIndex = 6;
             // 
             // _txtCharisma
             // 
             this._txtCharisma.Location = new System.Drawing.Point(685, 257);
             this._txtCharisma.Name = "_txtCharisma";
             this._txtCharisma.Size = new System.Drawing.Size(100, 20);
-            this._txtCharisma.TabIndex = 18;
+            this._txtCharisma.TabIndex = 7;
             // 
             // CharacterForm
             // 
@@ -252,6 +253,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
+            this.Load += new System.EventHandler(this.CharacterForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

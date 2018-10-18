@@ -30,58 +30,19 @@ namespace CharacterCreator
         }
         private string _race;
 /**************************************************************/
-        public int Strength
-        {
-            get { return _strength; }
-            set {
-                if (value <= 100 && value > 0)
-                    _strength = value;
-                }
-        }
+        public int Strength { get; set; } = 50;
         private int _strength;
 /**************************************************************/
-        public int Intelligence
-        {
-            get { return _intelligence; }
-            set
-            {
-                if (value <= 100 && value > 0)
-                    _intelligence = value;
-            }
-        }
+        public int Intelligence { get; set; } = 50;
         private int _intelligence;
 /**************************************************************/
-        public int Agility
-        {
-            get { return _agility; }
-            set
-            {
-                if (value <= 100 && value > 0)
-                    _agility = value;
-            }
-        }
+        public int Agility { get; set; } = 50;
         private int _agility;
 /**************************************************************/
-        public int Constitution
-        {
-            get { return _constitution; }
-            set
-            {
-                if (value <= 100 && value > 0)
-                    _constitution = value;
-            }
-        }
+        public int Constitution { get; set; } = 50;
         private int _constitution;
 /**************************************************************/
-        public int Charisma
-        {
-            get { return _charisma; }
-            set
-            {
-                if (value <= 100 && value > 0)
-                    _charisma = value;
-            }
-        }
+        public int Charisma { get; set; } = 50;
         private int _charisma;
 /**************************************************************/
     }

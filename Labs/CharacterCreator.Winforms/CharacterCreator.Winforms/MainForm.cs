@@ -38,6 +38,8 @@ namespace CharacterCreator.Winforms
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
+            _database.Add(form.Character);
+
         }
         private CharacterDatabase _database = new CharacterDatabase();
     }
