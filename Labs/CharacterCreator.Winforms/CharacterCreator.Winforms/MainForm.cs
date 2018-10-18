@@ -63,5 +63,10 @@ namespace CharacterCreator.Winforms
         {
             return _listCharacters.SelectedItem as Character;
         }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
