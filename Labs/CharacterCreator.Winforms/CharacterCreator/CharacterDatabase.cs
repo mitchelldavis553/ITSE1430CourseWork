@@ -9,7 +9,7 @@ namespace CharacterCreator
     public class CharacterDatabase
     {
         public CharacterDatabase () : this(true) 
-        { }
+        { } //Constructor Chaining to initialize listbox with example data
 
         public CharacterDatabase ( bool seed ) : this(GetSeedCharacter(seed))
         { }
@@ -31,7 +31,7 @@ namespace CharacterCreator
         {
             for (var index = 0; index < _character.Length; ++index)
             {
-                if (String.Compare(name, _character[index]?.Name, true) == 0)
+                if (String.Compare(name, _character[index]?.Name, true) == 0) 
                 {
                     _character[index] = null;
                     return;

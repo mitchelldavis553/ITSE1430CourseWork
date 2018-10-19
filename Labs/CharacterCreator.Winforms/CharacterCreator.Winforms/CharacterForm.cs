@@ -27,7 +27,7 @@ namespace CharacterCreator.Winforms
                 _txtCharisma.Text = Character.Charisma.ToString();
             }
 
-            ValidateChildren();
+            ValidateChildren(); //Checks Validation on Children, if they are valid returns true.
         }
 
         private void OnCancel (object sender, EventArgs e)
@@ -36,12 +36,12 @@ namespace CharacterCreator.Winforms
             Close();
         }
 
-        private void OnSave (object sender, EventArgs e)
+        private void OnSave (object sender, EventArgs e) //Creates an instance of Character Object and stores values
         {
             if (!ValidateChildren())
                 return;
 
-            var character = new Character();
+            var character = new Character();  
 
             character.Name = _txtName.Text;
             character.Description = _txtDescription.Text;

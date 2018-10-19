@@ -21,8 +21,9 @@ namespace CharacterCreator.Winforms
         {
             base.OnLoad(e);
 
+            //Setting the listbox to display the "Name" property of a character
             _listCharacters.DisplayMember = "Name";
-            RefreshCharacters();
+            RefreshCharacters(); //Calls to refresh the characters in display since OnLoad will be called when MainForm renders.
         }
 
         private void OnExit(object sender, EventArgs e)
@@ -33,31 +34,32 @@ namespace CharacterCreator.Winforms
             Close();
         }
 
-        private void OnHelpAbout(object sender, EventArgs e)
+        private void OnHelpAbout(object sender, EventArgs e) 
         {
             MessageBox.Show(this, "Mitchell Davis\n ITSE 1430\n Character Creator", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }
 
-        private void OnCharacterNew (object sender, EventArgs e)
+        private void OnCharacterNew (object sender, EventArgs e) 
         {
+            //Creates an instance of Character Form
             var form = new CharacterForm();
 
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
-            _database.Add(form.Character);
+            _database.Add(form.Character); //Calls Add method in database to store the Character
             RefreshCharacters();
         }
 
-        private void RefreshCharacters()
+        private void RefreshCharacters() // Gets all data stored in a character array and clears the existing items in the listbox and adds any new ones.
         {
             var characters = _database.GetAllElements();
             _listCharacters.Items.Clear();
             _listCharacters.Items.AddRange(characters);
         }
 
-        private CharacterDatabase _database = new CharacterDatabase();
+        private CharacterDatabase _database = new CharacterDatabase(); //Creates a local instance of character database
 
         private Character GetSelectedCharacter()
         {
@@ -79,7 +81,7 @@ namespace CharacterCreator.Winforms
                 return;
 
             var form = new CharacterForm();
-            form.Character = item;
+            form.Character = item; // Populates Character Form with the Selected Character's Data
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
@@ -101,8 +103,6 @@ namespace CharacterCreator.Winforms
 
             if (MessageBox.Show(this, $"Are you sure you want to Delete this Character? {item.Name}", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
                 return;
-
-
 
             _database.Remove(item.Name);
             RefreshCharacters();
