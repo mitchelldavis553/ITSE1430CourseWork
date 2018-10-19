@@ -62,7 +62,6 @@
             // 
             // _txtName
             // 
-            this._txtName.CausesValidation = false;
             this._txtName.Location = new System.Drawing.Point(75, 39);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(118, 20);
@@ -151,6 +150,7 @@
             this._txtStrength.Name = "_txtStrength";
             this._txtStrength.Size = new System.Drawing.Size(100, 20);
             this._txtStrength.TabIndex = 4;
+            this._txtStrength.Text = "50";
             // 
             // label5
             // 
@@ -203,6 +203,7 @@
             this._txtIntelligence.Name = "_txtIntelligence";
             this._txtIntelligence.Size = new System.Drawing.Size(100, 20);
             this._txtIntelligence.TabIndex = 5;
+            this._txtIntelligence.Text = "50";
             // 
             // _txtAgility
             // 
@@ -210,6 +211,7 @@
             this._txtAgility.Name = "_txtAgility";
             this._txtAgility.Size = new System.Drawing.Size(100, 20);
             this._txtAgility.TabIndex = 6;
+            this._txtAgility.Text = "50";
             // 
             // _txtConstitution
             // 
@@ -217,6 +219,7 @@
             this._txtConstitution.Name = "_txtConstitution";
             this._txtConstitution.Size = new System.Drawing.Size(100, 20);
             this._txtConstitution.TabIndex = 7;
+            this._txtConstitution.Text = "50";
             // 
             // _txtCharisma
             // 
@@ -224,6 +227,7 @@
             this._txtCharisma.Name = "_txtCharisma";
             this._txtCharisma.Size = new System.Drawing.Size(100, 20);
             this._txtCharisma.TabIndex = 8;
+            this._txtCharisma.Text = "50";
             // 
             // label10
             // 

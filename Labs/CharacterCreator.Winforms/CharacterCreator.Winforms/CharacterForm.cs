@@ -5,7 +5,6 @@ namespace CharacterCreator.Winforms
 {
     public partial class CharacterForm : Form
     {
-    
         public Character Character { get; set; }
 
         public CharacterForm()
@@ -18,6 +17,7 @@ namespace CharacterCreator.Winforms
             if (Character != null)
             {
                 _txtName.Text = Character.Name;
+                _txtDescription.Text = Character.Description;
                 _professionComboBox.Text = Character.Profession;
                 _raceComboBox.Text = Character.Race;
                 _txtStrength.Text = Character.Strength.ToString();

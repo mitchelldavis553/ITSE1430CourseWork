@@ -45,7 +45,7 @@ namespace CharacterCreator
 /**************************************************************/
         public int Constitution { get; set; }
 /**************************************************************/
-        public int Charisma { get; set; }
+        public int Charisma { get; set; } 
 /**************************************************************/
     }
 }
