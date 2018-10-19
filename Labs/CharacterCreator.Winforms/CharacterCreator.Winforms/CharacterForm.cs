@@ -41,6 +41,7 @@ namespace CharacterCreator.Winforms
             var character = new Character();
 
             character.Name = _txtName.Text;
+            character.Description = _txtDescription.Text;
             character.Profession = _professionComboBox.Text;
             character.Race = _raceComboBox.Text;
             character.Strength = GetInt32(_txtStrength);

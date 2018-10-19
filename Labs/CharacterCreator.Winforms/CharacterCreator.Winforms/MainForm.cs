@@ -61,12 +61,64 @@ namespace CharacterCreator.Winforms
 
         private Character GetSelectedCharacter()
         {
+            //Looks at what is highlighted in the listbox and returns that item as a Character
             return _listCharacters.SelectedItem as Character;
         }
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OnCharacterEdit(object sender, EventArgs e)
         {
+            //Event Handler for when user clicks or hotkeys CTRL + O  to call the implementation in another method
+            EditCharacter();
+        }
 
+        private void EditCharacter()
+        {
+            //Gets currently selected character, if any
+            var item = GetSelectedCharacter();
+            if (item == null)
+                return;
+
+            var form = new CharacterForm();
+            form.Character = item;
+            if (form.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            _database.Edit(item.Name, form.Character);
+            RefreshCharacters();
+        }
+
+        private void OnCharacterDelete(object sender, EventArgs e)
+        {
+            //Event Handler for when the user click or hotkeys Del to call the implementation in another method
+            DeleteCharacter();
+        }
+
+        private void DeleteCharacter()
+        {
+            var item = GetSelectedCharacter();
+            if (item == null)
+                return;
+
+            if (MessageBox.Show(this, $"Are you sure you want to Delete this Character? {item.Name}", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                return;
+
+
+
+            _database.Remove(item.Name);
+            RefreshCharacters();
+        }
+
+        private void OnCharacterDoubleClick(object sender, EventArgs e)
+        {
+            EditCharacter();
+        }
+
+        private void OnListKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Delete)
+            {
+                DeleteCharacter();
+            };
         }
     }
 }

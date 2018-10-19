@@ -19,12 +19,34 @@ namespace CharacterCreator
             for (var index = 0; index < characters.Length; ++index)
                 _character[index] = characters[index];
         }
+
         public void Add( Character character )
         {
             var index = FindNextFreeIndex();
             if (index >= 0)
                 _character[index] = character;
         }
+
+        public void Remove (string name)
+        {
+            for (var index = 0; index < _character.Length; ++index)
+            {
+                if (String.Compare(name, _character[index]?.Name, true) == 0)
+                {
+                    _character[index] = null;
+                    return;
+                };
+            };
+        }
+
+        public void Edit (string name, Character character)
+        {
+            // Find Character by Name
+            Remove(name);
+            //Replaces the Character
+            Add(character);
+        }
+
         public Character[] GetAllElements()
         {
             var count = 0;
@@ -44,6 +66,7 @@ namespace CharacterCreator
 
             return temp;
         }
+
         private int FindNextFreeIndex()
         {
             for (var index = 0; index < _character.Length; ++index)
@@ -54,6 +77,7 @@ namespace CharacterCreator
 
             return -1;
         }
+
         private Character[] _character = new Character[100];
 
         private static Character[] GetSeedCharacter (bool seed)
@@ -66,6 +90,7 @@ namespace CharacterCreator
             character[0] = new Character();
             character[0].Name = "Exampleron";
             character[0].Profession = "Hunter";
+            character[0].Description = "An example of what a basic character looks like.";
             character[0].Race = "Human";
             character[0].Strength = 50;
             character[0].Intelligence = 50;

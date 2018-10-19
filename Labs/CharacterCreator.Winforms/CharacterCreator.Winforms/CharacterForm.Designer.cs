@@ -47,6 +47,8 @@
             this._txtAgility = new System.Windows.Forms.TextBox();
             this._txtConstitution = new System.Windows.Forms.TextBox();
             this._txtCharisma = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this._txtDescription = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -128,7 +130,7 @@
             this.button1.Location = new System.Drawing.Point(41, 358);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 29);
-            this.button1.TabIndex = 8;
+            this.button1.TabIndex = 9;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnSave);
@@ -138,7 +140,7 @@
             this.button2.Location = new System.Drawing.Point(154, 358);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(116, 28);
-            this.button2.TabIndex = 9;
+            this.button2.TabIndex = 10;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.OnCancel);
@@ -148,7 +150,7 @@
             this._txtStrength.Location = new System.Drawing.Point(48, 258);
             this._txtStrength.Name = "_txtStrength";
             this._txtStrength.Size = new System.Drawing.Size(100, 20);
-            this._txtStrength.TabIndex = 3;
+            this._txtStrength.TabIndex = 4;
             // 
             // label5
             // 
@@ -200,34 +202,53 @@
             this._txtIntelligence.Location = new System.Drawing.Point(204, 257);
             this._txtIntelligence.Name = "_txtIntelligence";
             this._txtIntelligence.Size = new System.Drawing.Size(100, 20);
-            this._txtIntelligence.TabIndex = 4;
+            this._txtIntelligence.TabIndex = 5;
             // 
             // _txtAgility
             // 
             this._txtAgility.Location = new System.Drawing.Point(350, 257);
             this._txtAgility.Name = "_txtAgility";
             this._txtAgility.Size = new System.Drawing.Size(100, 20);
-            this._txtAgility.TabIndex = 5;
+            this._txtAgility.TabIndex = 6;
             // 
             // _txtConstitution
             // 
             this._txtConstitution.Location = new System.Drawing.Point(523, 257);
             this._txtConstitution.Name = "_txtConstitution";
             this._txtConstitution.Size = new System.Drawing.Size(100, 20);
-            this._txtConstitution.TabIndex = 6;
+            this._txtConstitution.TabIndex = 7;
             // 
             // _txtCharisma
             // 
             this._txtCharisma.Location = new System.Drawing.Point(685, 257);
             this._txtCharisma.Name = "_txtCharisma";
             this._txtCharisma.Size = new System.Drawing.Size(100, 20);
-            this._txtCharisma.TabIndex = 7;
+            this._txtCharisma.TabIndex = 8;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(388, 83);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 13);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Description";
+            // 
+            // _txtDescription
+            // 
+            this._txtDescription.Location = new System.Drawing.Point(455, 81);
+            this._txtDescription.Multiline = true;
+            this._txtDescription.Name = "_txtDescription";
+            this._txtDescription.Size = new System.Drawing.Size(320, 20);
+            this._txtDescription.TabIndex = 3;
             // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(943, 450);
+            this.Controls.Add(this._txtDescription);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this._txtCharisma);
             this.Controls.Add(this._txtConstitution);
             this.Controls.Add(this._txtAgility);
@@ -281,5 +302,7 @@
         private System.Windows.Forms.TextBox _txtAgility;
         private System.Windows.Forms.TextBox _txtConstitution;
         private System.Windows.Forms.TextBox _txtCharisma;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox _txtDescription;
     }
 }

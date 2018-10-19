@@ -30,20 +30,22 @@ namespace CharacterCreator
         }
         private string _race;
 /**************************************************************/
-        public int Strength { get; set; } = 50;
-        private int _strength;
+        public string Description
+        {
+            get { return _description ?? ""; }
+            set { _description = value; }
+        }
+        private string _description;
 /**************************************************************/
-        public int Intelligence { get; set; } = 50;
-        private int _intelligence;
+        public int Strength { get; set; }
 /**************************************************************/
-        public int Agility { get; set; } = 50;
-        private int _agility;
+        public int Intelligence { get; set; }
 /**************************************************************/
-        public int Constitution { get; set; } = 50;
-        private int _constitution;
+        public int Agility { get; set; }
 /**************************************************************/
-        public int Charisma { get; set; } = 50;
-        private int _charisma;
+        public int Constitution { get; set; }
+/**************************************************************/
+        public int Charisma { get; set; }
 /**************************************************************/
     }
 }
