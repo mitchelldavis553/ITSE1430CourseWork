@@ -37,7 +37,6 @@ namespace CharacterCreator.Winforms
         private void OnHelpAbout(object sender, EventArgs e) 
         {
             MessageBox.Show(this, "Mitchell Davis\n ITSE 1430\n Character Creator", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Close();
         }
 
         private void OnCharacterNew (object sender, EventArgs e) 
@@ -81,6 +80,7 @@ namespace CharacterCreator.Winforms
                 return;
 
             var form = new CharacterForm();
+            form.Text = "Edit Character";
             form.Character = item; // Populates Character Form with the Selected Character's Data
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;

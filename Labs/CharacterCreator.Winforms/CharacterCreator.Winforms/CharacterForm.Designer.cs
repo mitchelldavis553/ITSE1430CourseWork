@@ -299,7 +299,7 @@
             this._txtDescription.Location = new System.Drawing.Point(73, 130);
             this._txtDescription.Multiline = true;
             this._txtDescription.Name = "_txtDescription";
-            this._txtDescription.Size = new System.Drawing.Size(328, 26);
+            this._txtDescription.Size = new System.Drawing.Size(328, 62);
             this._txtDescription.TabIndex = 3;
             // 
             // _errors
@@ -336,6 +336,7 @@
             this.Controls.Add(this._txtName);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(423, 363);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(423, 363);
             this.Name = "CharacterForm";
