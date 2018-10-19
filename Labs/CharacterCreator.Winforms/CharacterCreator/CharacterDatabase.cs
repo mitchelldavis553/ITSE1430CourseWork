@@ -90,6 +90,7 @@ namespace CharacterCreator
             character[0] = new Character();
             character[0].Name = "Exampleron";
             character[0].Profession = "Hunter";
+            character[0].Description = "An example of what a character should look like.";
             character[0].Race = "Human";
             character[0].Strength = 50;
             character[0].Intelligence = 50;
