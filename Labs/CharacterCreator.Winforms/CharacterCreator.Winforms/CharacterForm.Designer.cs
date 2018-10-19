@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this._txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +50,8 @@
             this._txtCharisma = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this._txtDescription = new System.Windows.Forms.TextBox();
+            this._errors = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this._errors)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -91,6 +94,7 @@
             this._professionComboBox.Name = "_professionComboBox";
             this._professionComboBox.Size = new System.Drawing.Size(120, 21);
             this._professionComboBox.TabIndex = 1;
+            this._professionComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateProfession);
             // 
             // label3
             // 
@@ -114,6 +118,7 @@
             this._raceComboBox.Name = "_raceComboBox";
             this._raceComboBox.Size = new System.Drawing.Size(117, 21);
             this._raceComboBox.TabIndex = 2;
+            this._raceComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateRace);
             // 
             // label4
             // 
@@ -151,6 +156,7 @@
             this._txtStrength.Size = new System.Drawing.Size(100, 20);
             this._txtStrength.TabIndex = 4;
             this._txtStrength.Text = "50";
+            this._txtStrength.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // label5
             // 
@@ -204,6 +210,7 @@
             this._txtIntelligence.Size = new System.Drawing.Size(100, 20);
             this._txtIntelligence.TabIndex = 5;
             this._txtIntelligence.Text = "50";
+            this._txtIntelligence.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // _txtAgility
             // 
@@ -212,6 +219,7 @@
             this._txtAgility.Size = new System.Drawing.Size(100, 20);
             this._txtAgility.TabIndex = 6;
             this._txtAgility.Text = "50";
+            this._txtAgility.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // _txtConstitution
             // 
@@ -220,6 +228,7 @@
             this._txtConstitution.Size = new System.Drawing.Size(100, 20);
             this._txtConstitution.TabIndex = 7;
             this._txtConstitution.Text = "50";
+            this._txtConstitution.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // _txtCharisma
             // 
@@ -228,6 +237,7 @@
             this._txtCharisma.Size = new System.Drawing.Size(100, 20);
             this._txtCharisma.TabIndex = 8;
             this._txtCharisma.Text = "50";
+            this._txtCharisma.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateAttributes);
             // 
             // label10
             // 
@@ -246,10 +256,16 @@
             this._txtDescription.Size = new System.Drawing.Size(320, 20);
             this._txtDescription.TabIndex = 3;
             // 
+            // _errors
+            // 
+            this._errors.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this._errors.ContainerControl = this;
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(943, 450);
             this.Controls.Add(this._txtDescription);
             this.Controls.Add(this.label10);
@@ -280,6 +296,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
             this.Load += new System.EventHandler(this.CharacterForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this._errors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,5 +325,6 @@
         private System.Windows.Forms.TextBox _txtCharisma;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox _txtDescription;
+        private System.Windows.Forms.ErrorProvider _errors;
     }
 }

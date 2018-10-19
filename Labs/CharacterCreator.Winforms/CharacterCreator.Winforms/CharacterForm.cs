@@ -38,6 +38,9 @@ namespace CharacterCreator.Winforms
 
         private void OnSave (object sender, EventArgs e)
         {
+            if (!ValidateChildren())
+                return;
+
             var character = new Character();
 
             character.Name = _txtName.Text;
@@ -68,11 +71,55 @@ namespace CharacterCreator.Winforms
         private void OnValidateName(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var control = sender as TextBox;
+
             if (String.IsNullOrEmpty(control.Text))
             {
+                _errors.SetError(control, "Name is required");
                 e.Cancel = true;
             }
+            else
+                _errors.SetError(control, "");
+        }
 
+        private void OnValidateProfession(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var control = sender as ComboBox;
+
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Profession is required");
+                e.Cancel = true;
+            }
+            else
+                _errors.SetError(control, "");
+        }
+
+        private void OnValidateRace(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var control = sender as ComboBox;
+
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Race is required");
+                e.Cancel = true;
+            }
+            else
+                _errors.SetError(control, "");
+        }
+
+        private void OnValidateAttributes(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var control = sender as TextBox;
+
+            var result = GetInt32(control);
+
+            if (result < 0 || result > 100)
+            {
+                _errors.SetError(control, "Attribute must be <0 and <= 100");
+                e.Cancel = true;
+            }
+            else
+                _errors.SetError(control, "");
         }
     }
 }
