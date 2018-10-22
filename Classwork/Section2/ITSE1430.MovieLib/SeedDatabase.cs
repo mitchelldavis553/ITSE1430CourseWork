@@ -8,7 +8,7 @@ namespace ITSE1430.MovieLib
 {
     public static class SeedDatabase
     {
-        public static void Seed(MovieDatabase database)
+        public static void Seed( MovieDatabase database )
         {
            var movies = new[] { // Inferring Array Type and Size, since it is an expression we can return it
            new Movie()

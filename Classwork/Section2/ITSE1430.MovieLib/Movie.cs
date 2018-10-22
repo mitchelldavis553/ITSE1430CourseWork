@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ITSE1430.MovieLib
 {
-    public class Movie
+    public class Movie :IValidatableObject
     {
         public string Name
         {
@@ -37,32 +38,28 @@ namespace ITSE1430.MovieLib
         public int RunLength { get; set; }
 
         public bool IsOwned { get; set; }
-        //private int _runLength;
-
-        //Both of these are private: Only accessible by this type
-        //int someValue;
-        //private int someValue2;
-
-        //void Foo()
-        //{
-            //var x = RunLength;
-
-            //var isLong = x > 100;
-
-            //var y = someValue;
-        //}
-
+        
         public int Id { get; private set; }
-        //RESTRICTIONS on Mixed Access
-        //************************************
-        // Only get one
-        //Always be more restrictive
-        //************************************
-
-        //Calculated Property
+        
         public bool IsColor
         {
             get { return ReleaseYear > 1940; }
+        }
+
+        public IEnumerable<ValidationResult> Validate( ValidationContext validationContext )
+        {
+            var results = new List<ValidationResult>();
+
+            if (String.IsNullOrEmpty(Name))
+                results.Add(new ValidationResult("Name is required.", new[] { nameof(Name) }));
+
+            if (ReleaseYear < 1900)
+                results.Add(new ValidationResult("Release Year must be >= 1900.", new[] { nameof(ReleaseYear) }));
+
+            if (RunLength < 0)
+                results.Add(new ValidationResult("Run Length must be >= 0.", new[] { nameof(RunLength) } ));
+
+            return results;
         }
     }
 }

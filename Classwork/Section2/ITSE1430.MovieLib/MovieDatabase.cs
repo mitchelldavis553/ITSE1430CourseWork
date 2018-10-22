@@ -14,7 +14,7 @@ namespace ITSE1430.MovieLib
             if (movie == null)
                 return;
 
-            AddCore(movie);
+            AddCore(movie); //implementation I.E. what you'res supposed to add or improve: Re-use functionality with
         }
 
         protected abstract void AddCore( Movie movie );
