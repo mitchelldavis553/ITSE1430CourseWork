@@ -41,13 +41,19 @@ namespace ITSE1430.MovieLib.UI
             };
 
             var results = ObjectValidator.Validate(movie);
-            if (results.Count > 0)
+            foreach (var result in results)
             {
-                var firstMessage = results[0];
-                MessageBox.Show(this, firstMessage.ErrorMessage, "Validation Failed", MessageBoxButtons.OK);
+                MessageBox.Show(this, result.ErrorMessage, "Validation Failed", MessageBoxButtons.OK);
 
                 return;
-            };
+            }
+            //if (results.Count > 0)
+            //{
+            //    var firstMessage = results[0];
+            //    MessageBox.Show(this, firstMessage.ErrorMessage, "Validation Failed", MessageBoxButtons.OK);
+
+            //    return;
+            //};
 
             Movie = movie;
             DialogResult = DialogResult.OK;

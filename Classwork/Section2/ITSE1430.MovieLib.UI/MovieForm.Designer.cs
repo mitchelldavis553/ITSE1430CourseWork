@@ -59,7 +59,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._txtName.Location = new System.Drawing.Point(89, 12);
             this._txtName.Name = "_txtName";
-            this._txtName.Size = new System.Drawing.Size(204, 20);
+            this._txtName.Size = new System.Drawing.Size(212, 20);
             this._txtName.TabIndex = 0;
             this._txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatingName);
             // 
@@ -81,7 +81,7 @@
             this._txtDescription.Location = new System.Drawing.Point(89, 38);
             this._txtDescription.Multiline = true;
             this._txtDescription.Name = "_txtDescription";
-            this._txtDescription.Size = new System.Drawing.Size(204, 75);
+            this._txtDescription.Size = new System.Drawing.Size(212, 75);
             this._txtDescription.TabIndex = 1;
             // 
             // label3
@@ -125,7 +125,7 @@
             // _buttonSave
             // 
             this._buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._buttonSave.Location = new System.Drawing.Point(137, 196);
+            this._buttonSave.Location = new System.Drawing.Point(172, 196);
             this._buttonSave.Name = "_buttonSave";
             this._buttonSave.Size = new System.Drawing.Size(75, 23);
             this._buttonSave.TabIndex = 5;
@@ -137,7 +137,7 @@
             // 
             this._buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._buttonCancel.CausesValidation = false;
-            this._buttonCancel.Location = new System.Drawing.Point(218, 196);
+            this._buttonCancel.Location = new System.Drawing.Point(253, 196);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(75, 23);
             this._buttonCancel.TabIndex = 6;
@@ -166,7 +166,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(304, 259);
+            this.ClientSize = new System.Drawing.Size(339, 259);
             this.ControlBox = false;
             this.Controls.Add(this._chkOwned);
             this.Controls.Add(this._buttonCancel);

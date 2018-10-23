@@ -9,7 +9,7 @@ namespace ITSE1430.MovieLib
 {
     public static class ObjectValidator
     {
-        public static List<ValidationResult> Validate ( IValidatableObject value)
+        public static IEnumerable<ValidationResult> Validate ( IValidatableObject value)
         {
             var results = new List<ValidationResult>();
 

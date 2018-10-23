@@ -48,18 +48,16 @@ namespace ITSE1430.MovieLib
 
         public IEnumerable<ValidationResult> Validate( ValidationContext validationContext )
         {
-            var results = new List<ValidationResult>();
+            //var results = new List<ValidationResult>();
 
             if (String.IsNullOrEmpty(Name))
-                results.Add(new ValidationResult("Name is required.", new[] { nameof(Name) }));
+               yield return new ValidationResult("Name is required.", new[] { nameof(Name) });
 
             if (ReleaseYear < 1900)
-                results.Add(new ValidationResult("Release Year must be >= 1900.", new[] { nameof(ReleaseYear) }));
+                yield return new ValidationResult("Release Year must be >= 1900.", new[] { nameof(ReleaseYear) });
 
             if (RunLength < 0)
-                results.Add(new ValidationResult("Run Length must be >= 0.", new[] { nameof(RunLength) } ));
-
-            return results;
+                yield return new ValidationResult("Run Length must be >= 0.", new[] { nameof(RunLength) } );
         }
     }
 }

@@ -15,18 +15,9 @@ namespace ITSE1430.MovieLib.Memory
 
         private List<Movie> _items = new List<Movie>();
 
-        protected override Movie[] GetAllCore()
+        protected override IEnumerable<Movie> GetAllCore()
         {
-            var count = _items.Count;
-
-            var temp = new Movie[count];
-            var index = 0;
-            foreach (var movie in _items) // copies the elements into new temp array
-            {
-                temp[index++] = movie;
-            };
-
-            return temp;
+            return _items;
         }
 
         protected override void RemoveCore( string name )
