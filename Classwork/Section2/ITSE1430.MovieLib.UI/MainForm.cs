@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using ITSE1430.MovieLib.Memory;
 
@@ -12,7 +13,7 @@ namespace ITSE1430.MovieLib.UI
         }
 
 
-        private void exitToolStripMenuItem_Click( object sender, EventArgs e )
+        private void OnFileExit ( object sender, EventArgs e )
         {
             if (MessageBox.Show("Are you sure you want to exit?",
                     "Close", MessageBoxButtons.YesNo) == DialogResult.No)
@@ -40,7 +41,7 @@ namespace ITSE1430.MovieLib.UI
             RefreshMovies(); // The MainForm Load is only loaded once when it is called. Have to make the data it will update/display available
         }
 
-        private MovieDatabase _database = new MemoryMovieDatabase();
+        private IMovieDatabase _database = new MemoryMovieDatabase();
 
         //This method can be overridden in a derived type
         protected virtual void SomeFunction()
@@ -55,7 +56,8 @@ namespace ITSE1430.MovieLib.UI
             base.OnLoad(e);
 
             //Seed database
-            SeedDatabase.Seed(_database);
+            //SeedDatabase.Seed(_database);
+            _database.Seed();
 
             _listMovies.DisplayMember = "Name"; // Setting the Display Member Property to Name property. (When it displays it looks for the name property to display)
             RefreshMovies();
@@ -68,7 +70,11 @@ namespace ITSE1430.MovieLib.UI
             var movies = _database.GetAll();
 
             _listMovies.Items.Clear();
-            _listMovies.Items.AddRange(movies); // Listbox property that displays the data stored in the Items property and adds an item to the list when we add
+
+            //TODO: Hard Way
+            //foreach (var movie in movies)
+              //_listMovies.Items.Add(movie);
+            _listMovies.Items.AddRange(movies.ToArray()); // Listbox property that displays the data stored in the Items property and adds an item to the list when we add
         }
 
         private void OnMovieDelete( object sender, EventArgs e )

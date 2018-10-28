@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ITSE1430.MovieLib
 {
-    public abstract class MovieDatabase
+    public abstract class MovieDatabase : IMovieDatabase
     {
         public void Add( Movie movie )
         {
@@ -14,17 +14,17 @@ namespace ITSE1430.MovieLib
             if (movie == null)
                 return;
 
-            AddCore(movie);
+            AddCore(movie); //implementation I.E. what you'res supposed to add or improve: Re-use functionality with
         }
 
         protected abstract void AddCore( Movie movie );
 
-        public Movie[] GetAll()
+        public IEnumerable<Movie> GetAll()
         {
             return GetAllCore();
         }
 
-        protected abstract Movie[] GetAllCore();
+        protected abstract IEnumerable<Movie> GetAllCore();
 
         public void Remove( string name )
         {
