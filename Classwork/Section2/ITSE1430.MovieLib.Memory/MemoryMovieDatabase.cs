@@ -8,20 +8,20 @@ namespace ITSE1430.MovieLib.Memory
 {
     public class MemoryMovieDatabase : MovieDatabase
     {
-        protected override void AddCore( Movie movie )
-        {
-            _items.Add(movie);
-        }
+        protected override void AddCore( Movie movie ) => _items.Add(movie);
+        //{
+        //    _items.Add(movie);
+        //}
 
         private List<Movie> _items = new List<Movie>();
 
-        protected override IEnumerable<Movie> GetAllCore()
-        {
-            return _items.Select(Clone);
+        protected override IEnumerable<Movie> GetAllCore() => _items.Select(Clone);
+        //{
+        //    return _items.Select(Clone);
             
-            //var i = _items.ToArray();
-            //return _items;
-        }
+        //    //var i = _items.ToArray();
+        //    //return _items;
+        //}
 
         private Movie Clone ( Movie item)
         {
@@ -50,16 +50,16 @@ namespace ITSE1430.MovieLib.Memory
             //        return movie;
             //};
 
-            return _items.FirstOrDefault(IsName);
+            return _items.FirstOrDefault(m => String.Compare(name, m.Name, true) == 0 ); // Lambda Closure Concept. Compiler creates a helper but needs data in this
         }
 
-        private bool IsName (Movie movie )
-        {
-            if (String.Compare(name, movie.Name, true) == 0)
-                return true;
+        //private bool IsName (Movie movie )
+        //{
+        //    if (String.Compare(name, movie.Name, true) == 0)
+        //        return true;
 
-            return false;
-        }
+        //    return false;
+        //}
 
         protected override void EditCore( Movie oldMovie, Movie newMovie )
         {

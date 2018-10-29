@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITSE1430.MovieLib", "ITSE14
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITSE1430.MovieLib.Memory", "ITSE1430.MovieLib.Memory\ITSE1430.MovieLib.Memory.csproj", "{16715FCA-98AD-4FF1-920E-7D1236E2BEBA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayWithLinq", "PlayWithLinq\PlayWithLinq.csproj", "{A0472E0D-D90B-4240-9039-6DD6B70FC47D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{16715FCA-98AD-4FF1-920E-7D1236E2BEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16715FCA-98AD-4FF1-920E-7D1236E2BEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16715FCA-98AD-4FF1-920E-7D1236E2BEBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0472E0D-D90B-4240-9039-6DD6B70FC47D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0472E0D-D90B-4240-9039-6DD6B70FC47D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0472E0D-D90B-4240-9039-6DD6B70FC47D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0472E0D-D90B-4240-9039-6DD6B70FC47D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,8 +11,11 @@ namespace ITSE1430.MovieLib
     {
         public string Name
         {
-            get { return _name ?? ""; } // string get ()
-            set { _name = value; } // void set ( string value )
+            //get { return _name ?? ""; } // string get ()
+            get => _name ?? ""; // converted to lambda expression
+
+            //set { _name = value; } // void set ( string value )
+            set => _name = value;
         }
         private string _name;
 
@@ -40,11 +43,12 @@ namespace ITSE1430.MovieLib
         public bool IsOwned { get; set; }
         
         public int Id { get; private set; }
-        
-        public bool IsColor
-        {
-            get { return ReleaseYear > 1940; }
-        }
+
+        public bool IsColor => ReleaseYear > 1940;
+        //{
+        //    //get { return ReleaseYear > 1940;
+        //     get => ReleaseYear > 1940;
+        //}
 
         public IEnumerable<ValidationResult> Validate( ValidationContext validationContext )
         {
