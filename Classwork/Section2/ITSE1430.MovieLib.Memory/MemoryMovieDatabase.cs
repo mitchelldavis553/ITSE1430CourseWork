@@ -15,24 +15,41 @@ namespace ITSE1430.MovieLib.Memory
 
         private List<Movie> _items = new List<Movie>();
 
-        protected override IEnumerable<Movie> GetAllCore() => _items.Select(Clone);
-        //{
-        //    return _items.Select(Clone);
-            
-        //    //var i = _items.ToArray();
-        //    //return _items;
-        //}
-
-        private Movie Clone ( Movie item)
+        protected override IEnumerable<Movie> GetAllCore()
         {
-            return new Movie()
-            {
-                Name = item.Name,
-                Description = item.Description,
-                ReleaseYear = item.ReleaseYear,
-                RunLength = item.RunLength
-            };
+                return from i in _items
+                //where
+                select new Movie()
+                {
+                    Name = i.Name,
+                    Description = i.Description,
+                    ReleaseYear = i.ReleaseYear,
+                    RunLength = i.RunLength
+                };
+
+            //Use LINQ to clone movies
+            //return _items.Select(item => new Movie()
+            //{
+            //    Name = item.Name,
+            //    Description = item.Description,
+            //    ReleaseYear = item.ReleaseYear,
+            //    RunLength = item.RunLength
+            //});
+
+            //    //var i = _items.ToArray();
+            //    //return _items;
         }
+
+        //private Movie Clone ( Movie item)
+        //{
+        //    return new Movie()
+        //    {
+        //        Name = item.Name,
+        //        Description = item.Description,
+        //        ReleaseYear = item.ReleaseYear,
+        //        RunLength = item.RunLength
+        //    };
+        //}
 
         protected override void RemoveCore( string name )
         {
@@ -50,7 +67,10 @@ namespace ITSE1430.MovieLib.Memory
             //        return movie;
             //};
 
-            return _items.FirstOrDefault(m => String.Compare(name, m.Name, true) == 0 ); // Lambda Closure Concept. Compiler creates a helper but needs data in this
+            //return _items.FirstOrDefault(m => String.Compare(name, m.Name, true) == 0 ); // Lambda Closure Concept. Compiler creates a helper but needs data in this
+            return (from m in _items
+                   where String.Compare(name, m.Name, true) == 0 
+                   select m).FirstOrDefault();
         }
 
         //private bool IsName (Movie movie )

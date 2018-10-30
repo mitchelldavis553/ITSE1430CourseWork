@@ -22,7 +22,9 @@ namespace PlayWithLinq
                 return p.IsDiscounted && p.Price > 100;
             });
 
-
+            //var subsetProducts = products.Select(p => p); // Select All products from Product
+            var subsetProducts = products.Select(p => new { Name = p.Name, Price = p.Price}); // Anonymous types, creating a type with two properties that the compiler infers
+            var expensiveSubset = subsetProducts.Where(p => p.Price > 100); // Only has two properties
         }
 
         //static bool IsDiscounted( Product product)
