@@ -17,6 +17,19 @@ namespace ContactManager.UI
             InitializeComponent();
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            _listContacts.DisplayMember = "Name";
+            RefreshContacts();
+        }
+
+        private void RefreshContacts()
+        {
+            
+        }
+
         private void OnFileExit (object sender, EventArgs e)
         {
             if (MessageBox.Show(this, "Are you sure you want to exit the program?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
