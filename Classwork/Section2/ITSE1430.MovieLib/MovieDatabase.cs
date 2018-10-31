@@ -10,9 +10,13 @@ namespace ITSE1430.MovieLib
     {
         public void Add( Movie movie )
         {
-            //TODO: Validate
+            //Validate
             if (movie == null)
-                return;
+                throw new ArgumentNullException(nameof(movie));
+            ObjectValidator.Validate(movie);
+            //TODO: Validate
+            //if (movie == null)
+                
 
             AddCore(movie); //implementation I.E. what you'res supposed to add or improve: Re-use functionality with
         }
@@ -39,15 +43,18 @@ namespace ITSE1430.MovieLib
 
         public void Edit( string name, Movie movie )
         {
-            //TODO: Validate
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+            else if (name == "")
+                throw new ArgumentException("Name cannot be empty", nameof(name));
+
             if (movie == null)
-                return;
-            if (String.IsNullOrEmpty(name))
-                return;
+                throw new ArgumentNullException(nameof(movie));
+            ObjectValidator.Validate(movie);
 
             var existing = FindByName(name);
             if (existing == null)
-                return;
+                throw new Exception("Movie not found.");
 
             EditCore(existing, movie);
         }

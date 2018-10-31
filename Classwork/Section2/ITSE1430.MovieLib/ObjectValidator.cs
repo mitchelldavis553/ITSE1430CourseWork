@@ -9,7 +9,7 @@ namespace ITSE1430.MovieLib
 {
     public static class ObjectValidator
     {
-        public static IEnumerable<ValidationResult> Validate ( IValidatableObject value)
+        public static IEnumerable<ValidationResult> TryValidate ( IValidatableObject value )
         {
             var results = new List<ValidationResult>();
 
@@ -18,6 +18,13 @@ namespace ITSE1430.MovieLib
             Validator.TryValidateObject(value, context, results, true);
 
             return results;
+        }
+
+        public static void Validate( IValidatableObject value )
+        {
+            var context = new ValidationContext(value);
+
+            Validator.ValidateObject(value, context, true);
         }
     }
 }

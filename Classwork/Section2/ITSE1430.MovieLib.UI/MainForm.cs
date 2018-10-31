@@ -51,9 +51,11 @@ namespace ITSE1430.MovieLib.UI
         //protected abstract void SomeAbstractFunction();
        
        
-        protected override void OnLoad( EventArgs e )
+        protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
+
+            _database.Add(new Movie());
 
             //Seed database
             //SeedDatabase.Seed(_database);
