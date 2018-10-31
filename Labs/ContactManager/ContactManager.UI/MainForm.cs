@@ -17,6 +17,27 @@ namespace ContactManager.UI
             InitializeComponent();
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            _listContacts.DisplayMember = "Name";
+            RefreshContacts();
+        }
+
+        private ContactDatabase _database = new ContactDatabase();
+
+        private void RefreshContacts()
+        {
+            var contacts = from m in _database.GetAll()
+                           orderby m.Name
+                           select m;
+
+            _listContacts.Items.Clear();
+
+            _listContacts.Items.AddRange(contacts.ToArray());
+        }
+
         private void OnFileExit (object sender, EventArgs e)
         {
             if (MessageBox.Show(this, "Are you sure you want to exit the program?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -34,6 +55,9 @@ namespace ContactManager.UI
 
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
+
+            _database.Add(form.Contact);
+            RefreshContacts();
 
         }
     }
