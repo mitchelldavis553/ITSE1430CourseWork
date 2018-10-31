@@ -25,9 +25,17 @@ namespace ContactManager.UI
             RefreshContacts();
         }
 
+        private ContactDatabase _database = new ContactDatabase();
+
         private void RefreshContacts()
         {
-            
+            var contacts = from m in _database.GetAll()
+                           orderby m.Name
+                           select m;
+
+            _listContacts.Items.Clear();
+
+            _listContacts.Items.AddRange(contacts.ToArray());
         }
 
         private void OnFileExit (object sender, EventArgs e)
@@ -47,6 +55,9 @@ namespace ContactManager.UI
 
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
+
+            _database.Add(form.Contact);
+            RefreshContacts();
 
         }
     }

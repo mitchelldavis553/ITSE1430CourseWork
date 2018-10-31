@@ -78,7 +78,7 @@ namespace ITSE1430.MovieLib.UI
             //TODO: Hard Way
             //foreach (var movie in movies)
               //_listMovies.Items.Add(movie);
-            _listMovies.Items.AddRange(movies.ToArray()); // Listbox property that displays the data stored in the Items property and adds an item to the list when we add
+            _listMovies.Items.AddRange(movies.ToArray()); 
         }
 
         private void OnMovieDelete( object sender, EventArgs e )

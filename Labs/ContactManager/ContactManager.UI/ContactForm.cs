@@ -17,6 +17,8 @@ namespace ContactManager.UI
             InitializeComponent();
         }
 
+        public Contact Contact { get; set; }
+
         private void OnCancel (object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -28,16 +30,19 @@ namespace ContactManager.UI
             if (!ValidateChildren())
                 return;
 
-            var contact = new Contact();
-
-            contact.Name = _txtName.Text;
-            contact.EmailAddress = _txtEmailAddress.Text;
+            var contact = new Contact()
+            {
+                Name = _txtName.Text,
+                EmailAddress = _txtEmailAddress.Text
+            };
 
             if (MessageBox.Show(this, "Is this contacts' information correct?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                Contact = contact;
                 DialogResult = DialogResult.OK;
                 Close();
             };
+
         }
 
         private void OnValidateName (object sender, CancelEventArgs e)
@@ -66,5 +71,6 @@ namespace ContactManager.UI
                 _errors.SetError(control, "");
             
         }
+        
     }
 }

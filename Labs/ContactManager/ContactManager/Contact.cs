@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace ContactManager
 {
-   public class Contact : IMessageService
+   public class Contact
     {
-
-        public void SendMessage(string message, string subject, string emailAddress)
-        {
-            
-        }
-
         public string Name
         {
             get { return _name ?? ""; }

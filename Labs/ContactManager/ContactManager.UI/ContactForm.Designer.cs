@@ -53,7 +53,7 @@
             this._txtName.Location = new System.Drawing.Point(91, 23);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(100, 20);
-            this._txtName.TabIndex = 1;
+            this._txtName.TabIndex = 0;
             this._txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateName);
             // 
             // label2
@@ -70,7 +70,7 @@
             this._txtEmailAddress.Location = new System.Drawing.Point(91, 46);
             this._txtEmailAddress.Name = "_txtEmailAddress";
             this._txtEmailAddress.Size = new System.Drawing.Size(176, 20);
-            this._txtEmailAddress.TabIndex = 3;
+            this._txtEmailAddress.TabIndex = 1;
             this._txtEmailAddress.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateEmail);
             // 
             // button1
@@ -78,7 +78,7 @@
             this.button1.Location = new System.Drawing.Point(53, 104);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
+            this.button1.TabIndex = 2;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnSave);
@@ -88,7 +88,7 @@
             this.button2.Location = new System.Drawing.Point(134, 104);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
+            this.button2.TabIndex = 3;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.OnCancel);
@@ -111,7 +111,9 @@
             this.Controls.Add(this._txtName);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(308, 184);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(308, 184);
             this.Name = "ContactForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
