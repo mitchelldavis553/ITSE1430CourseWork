@@ -21,5 +21,6 @@ namespace ContactManager
             set { _emailAddress = value; }
         }
         private string _emailAddress;
+        //Form for sending an email, implements IMessageService, Object for what an email is, set that object to display on right side of split container on main form
     }
 }
