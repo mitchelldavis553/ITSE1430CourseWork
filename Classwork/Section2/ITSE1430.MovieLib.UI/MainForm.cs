@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using ITSE1430.MovieLib.Memory;
+using ITSE1430.MovieLib.Sql;
 
 namespace ITSE1430.MovieLib.UI
 {
@@ -53,7 +54,7 @@ namespace ITSE1430.MovieLib.UI
             RefreshMovies(); // The MainForm Load is only loaded once when it is called. Have to make the data it will update/display available
         }
 
-        private IMovieDatabase _database = new MemoryMovieDatabase();
+        private IMovieDatabase _database = new SqlMovieDatabase();
 
         //This method can be overridden in a derived type
         protected virtual void SomeFunction()
