@@ -13,7 +13,7 @@ namespace ITSE1430.MovieLib.UI
         }
 
 
-        private void OnFileExit ( object sender, EventArgs e )
+        private void OnFileExit( object sender, EventArgs e )
         {
             if (MessageBox.Show("Are you sure you want to exit?",
                     "Close", MessageBoxButtons.YesNo) == DialogResult.No)
@@ -36,7 +36,19 @@ namespace ITSE1430.MovieLib.UI
                 return;
 
             //MessageBox.Show("Adding  Movie");
-            _database.Add(form.Movie); // Call the database to add the Movie data
+            try
+            {
+                _database.Add(form.Movie); // Call the database to add the Movie data
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Log Failure
+                //Crash App
+                //throw ex;
+
+                //Rethrow
+                //throw;
+            };
             //Movie.Name = "";
             RefreshMovies(); // The MainForm Load is only loaded once when it is called. Have to make the data it will update/display available
         }
@@ -49,23 +61,21 @@ namespace ITSE1430.MovieLib.UI
 
         //This method MUST be overridden in a derived type
         //protected abstract void SomeAbstractFunction();
-       
-       
-        protected override void OnLoad ( EventArgs e )
+
+
+        protected override void OnLoad( EventArgs e )
         {
             base.OnLoad(e);
 
-            _database.Add(new Movie());
-
             //Seed database
             //SeedDatabase.Seed(_database);
-            _database.Seed();
+            //_database.Seed();
 
             _listMovies.DisplayMember = "Name"; // Setting the Display Member Property to Name property. (When it displays it looks for the name property to display)
             RefreshMovies();
         }
 
-        
+
 
         private void RefreshMovies()
         {
@@ -79,13 +89,15 @@ namespace ITSE1430.MovieLib.UI
 
             //TODO: Hard Way
             //foreach (var movie in movies)
-              //_listMovies.Items.Add(movie);
-            _listMovies.Items.AddRange(movies.ToArray()); 
+            //_listMovies.Items.Add(movie);
+            _listMovies.Items.AddRange(movies.ToArray());
         }
 
         private void OnMovieDelete( object sender, EventArgs e )
         {
+
             DeleteMovie();
+
         }
 
         private void DeleteMovie()
@@ -93,14 +105,21 @@ namespace ITSE1430.MovieLib.UI
             var item = GetSelectedMovie(); // Changing it to type Movie so we can have access to the name functionality
             if (item == null)
                 return;
-
-            _database.Remove(item.Name); // Access to name down here through member access
+            try
+            {
+                _database.Remove(item.Name); // Access to name down here through member access
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            };
             RefreshMovies();
         }
 
-        private void OnMovieEdit ( object sender, EventArgs e )
+        private void OnMovieEdit( object sender, EventArgs e )
         {
+
             EditMovie();
+
         }
 
         private Movie GetSelectedMovie()
@@ -126,8 +145,13 @@ namespace ITSE1430.MovieLib.UI
 
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
-
-            _database.Edit(item.Name, form.Movie); // Call the database to add the Movie data
+            try
+            {
+                _database.Edit(item.Name, form.Movie); // Call the database to add the Movie data
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            };
 
             RefreshMovies(); // The MainForm Load is only loaded once when it is called. Have to make the data it will update/display available
         }

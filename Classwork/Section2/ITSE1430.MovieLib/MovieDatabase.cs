@@ -14,11 +14,15 @@ namespace ITSE1430.MovieLib
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
             ObjectValidator.Validate(movie);
-            //TODO: Validate
-            //if (movie == null)
-                
 
-            AddCore(movie); //implementation I.E. what you'res supposed to add or improve: Re-use functionality with
+            //throw new Exception("Failed");
+            try
+            {
+                AddCore(movie); //implementation I.E. what you'res supposed to add or improve: Re-use functionality with
+            } catch (Exception e)
+            {
+                throw new Exception("Add Failed",  e); //chaining two exceptions together
+            };
         }
 
         protected abstract void AddCore( Movie movie );
