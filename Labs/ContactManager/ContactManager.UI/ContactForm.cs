@@ -38,6 +38,13 @@ namespace ContactManager.UI
 
             if (MessageBox.Show(this, "Is this contacts' information correct?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                var results = ObjectValidator.Validate(contact);
+                foreach ( var result in results)
+                {
+                    MessageBox.Show(this, result.ErrorMessage, "Validation Failed", MessageBoxButtons.OK);
+
+                    return;
+                }
                 Contact = contact;
                 DialogResult = DialogResult.OK;
                 Close();

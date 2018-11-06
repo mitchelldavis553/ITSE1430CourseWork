@@ -9,12 +9,17 @@ namespace ContactManager
     public class ContactDatabase
     {
         private List<Contact> _items = new List<Contact>();
-        public void Add (Contact contact)
+        public void Add(Contact contact)
         {
             if (contact == null)
                 return;
 
-            ContactAdd(contact);
+            if (ExistingContact(contact))
+            {
+                return;
+            }
+            else
+                ContactAdd(contact);
         }
 
         protected void ContactAdd(Contact contact) => _items.Add(contact);
@@ -36,6 +41,11 @@ namespace ContactManager
                        Name = c.Name,
                        EmailAddress = c.EmailAddress
                    };
+        }
+
+        protected bool ExistingContact(Contact contact)
+        {
+            return false;
         }
     }
 }
