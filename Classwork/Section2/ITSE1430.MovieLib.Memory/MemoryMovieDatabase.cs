@@ -8,7 +8,11 @@ namespace ITSE1430.MovieLib.Memory
 {
     public class MemoryMovieDatabase : MovieDatabase
     {
-        protected override void AddCore( Movie movie ) => _items.Add(movie);
+        protected override void AddCore( Movie movie )
+        {
+            //throw new Exception("Failed");
+           _items.Add(movie);
+        }
         //{
         //    _items.Add(movie);
         //}
