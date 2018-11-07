@@ -49,7 +49,6 @@ namespace ContactManager.UI
                 DialogResult = DialogResult.OK;
                 Close();
             };
-
         }
 
         private void OnValidateName (object sender, CancelEventArgs e)

@@ -14,15 +14,23 @@ namespace ContactManager
             if (contact == null)
                 return;
 
-            if (ExistingContact(contact))
-            {
-                return;
-            }
-            else
-                ContactAdd(contact);
+            ContactAdd(contact);
         }
 
         protected void ContactAdd(Contact contact) => _items.Add(contact);
+
+        public bool ExistingContact(Contact contact) => CheckExistingContact(contact);
+
+        protected bool CheckExistingContact(Contact contact)
+        {
+           foreach (var item in _items)
+            {
+                if ((contact.Name == item.Name) && (contact.EmailAddress == item.EmailAddress))
+                    return true;
+            }
+
+            return false;
+        }
 
         protected Contact FindByName( string name )
         {
@@ -41,11 +49,6 @@ namespace ContactManager
                        Name = c.Name,
                        EmailAddress = c.EmailAddress
                    };
-        }
-
-        protected bool ExistingContact(Contact contact)
-        {
-            return false;
         }
     }
 }

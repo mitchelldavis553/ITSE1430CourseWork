@@ -56,8 +56,16 @@ namespace ContactManager.UI
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
-            _database.Add(form.Contact);
-            RefreshContacts();
+            if (_database.ExistingContact(form.Contact))
+            {
+                MessageBox.Show(this, "Contact already exists", "Duplicate Contact", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return;
+            }
+            else
+            {
+                _database.Add(form.Contact);
+                RefreshContacts();
+            };
 
         }
     }
