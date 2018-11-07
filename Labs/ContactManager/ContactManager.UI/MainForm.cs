@@ -49,6 +49,8 @@ namespace ContactManager.UI
             MessageBox.Show(this, "Mitchell Davis\n ITSE 1430\n Contact Manager", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private Contact GetSelectedContact() => _listContacts.SelectedItem as Contact;
+
         private void OnContactAdd (object sender, EventArgs e)
         {
             var form = new ContactForm();
@@ -67,6 +69,38 @@ namespace ContactManager.UI
                 RefreshContacts();
             };
 
+        }
+
+        private void OnContactEdit(object sender, EventArgs e) => EditContact();
+
+        private void EditContact()
+        {
+            var item = GetSelectedContact();
+            if (item == null)
+                return;
+
+            var form = new ContactForm();
+            form.Text = "Edit Contact";
+            form.Contact = item;
+            if (form.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            _database.Edit(item.Name, form.Contact);
+        }
+
+        private void OnContactDelete(object sender, EventArgs e) => DeleteContact();
+
+        private void DeleteContact()
+        {
+            var item = GetSelectedContact();
+            if (item == null)
+                return;
+
+            if (MessageBox.Show(this, $"Are you sure you want to Delete this Contact?\n \t({item.Name})", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+
+            _database.Delete(item.Name);
+            RefreshContacts();
         }
     }
 }

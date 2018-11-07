@@ -17,6 +17,31 @@ namespace ContactManager
             ContactAdd(contact);
         }
 
+        public void Delete(string name) => DeleteContact(name);
+
+        protected void DeleteContact (string name)
+        {
+            var contact = FindByName(name);
+            if (contact != null)
+                _items.Remove(contact);
+        }
+
+        public void Edit (string name, Contact contact)
+        {
+            ObjectValidator.Validate(contact);
+            var existingContact = FindByName(name);
+
+            EditContact(existingContact, contact);
+        }
+
+
+        protected void EditContact(Contact oldContact, Contact newContact)
+        {
+            _items.Remove(oldContact);
+
+            _items.Add(newContact);
+        }
+
         protected void ContactAdd(Contact contact) => _items.Add(contact);
 
         public bool ExistingContact(Contact contact) => CheckExistingContact(contact);
