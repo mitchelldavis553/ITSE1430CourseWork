@@ -17,5 +17,20 @@ namespace ContactManager.UI
             InitializeComponent();
         }
 
+        public Email Email { get; set; }
+
+
+
+        private void OnValidatingSubject(object sender, CancelEventArgs e)
+        {
+            var control = sender as TextBox;
+
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Subject is required to send an email.");
+                e.Cancel = true;
+
+            }
+        }
     }
 }
