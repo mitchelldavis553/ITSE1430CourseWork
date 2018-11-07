@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Contact.cs" />
     <Compile Include="ContactDatabase.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="ObjectValidator.cs" />
     <Compile Include="IMessageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
