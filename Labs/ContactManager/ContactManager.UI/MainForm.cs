@@ -102,5 +102,15 @@ namespace ContactManager.UI
             _database.Delete(item.Name);
             RefreshContacts();
         }
+
+        private void OnEmailSend (object sender, EventArgs e)
+        {
+            var form = new EmailServiceForm();
+
+            if (form.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+
+        }
     }
 }

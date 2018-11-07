@@ -23,9 +23,9 @@ namespace ITSE1430.MovieLib.Sql
             throw new NotImplementedException();
         }
 
-        protected override IEnumerable<Movie> GetAllCore()
+        //protected override IEnumerable<Movie> GetAllCore()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void RemoveCore( string name )

@@ -19,6 +19,15 @@ namespace ContactManager.UI
 
         public Contact Contact { get; set; }
 
+        private void ContactForm_Load(object sender, EventArgs e)
+        {
+            if (Contact != null)
+            {
+                _txtName.Text = Contact.Name;
+                _txtEmailAddress.Text = Contact.EmailAddress;
+            }
+        }
+
         private void OnCancel (object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -77,6 +86,7 @@ namespace ContactManager.UI
                 _errors.SetError(control, "");
             
         }
-        
+
+       
     }
 }
