@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
 using ITSE1430.MovieLib.Memory;
@@ -54,7 +55,7 @@ namespace ITSE1430.MovieLib.UI
             RefreshMovies(); // The MainForm Load is only loaded once when it is called. Have to make the data it will update/display available
         }
 
-        private IMovieDatabase _database = new SqlMovieDatabase();
+        private IMovieDatabase _database; //= new SqlMovieDatabase();
 
         //This method can be overridden in a derived type
         protected virtual void SomeFunction()
@@ -67,6 +68,9 @@ namespace ITSE1430.MovieLib.UI
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad(e);
+
+            var connString = ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
+            _database = new SqlMovieDatabase(connString);
 
             //Seed database
             //SeedDatabase.Seed(_database);
