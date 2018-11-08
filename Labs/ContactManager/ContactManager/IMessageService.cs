@@ -8,16 +8,6 @@ namespace ContactManager
 {
     public interface IMessageService
     {
-        string Message
-        {
-            get;
-            set;
-        }
-
-        string Subject
-        {
-            get;
-            set;
-        }
+        void Send (Email email);
     }
 }

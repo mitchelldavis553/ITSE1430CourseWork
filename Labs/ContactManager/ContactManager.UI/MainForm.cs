@@ -103,14 +103,19 @@ namespace ContactManager.UI
             RefreshContacts();
         }
 
-        private void OnEmailSend (object sender, EventArgs e)
-        {
-            var form = new EmailServiceForm();
+        private void OnEmailSend(object sender, EventArgs e) => SendEmail();
 
-            if (form.ShowDialog(this) == DialogResult.Cancel)
+        private void SendEmail()
+        {
+            var item = GetSelectedContact();
+            if (item == null)
                 return;
 
-
+            var form = new EmailServiceForm();
+            form.Contact = item;
+            
+            if (form.ShowDialog(this) == DialogResult.Cancel)
+                return;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ContactManager
 {
-    public class Email : IMessageService,IValidatableObject
+    public class Email : IValidatableObject
     {
         public string Message
         {
@@ -22,6 +22,14 @@ namespace ContactManager
             set { _subject = value; }
         }
         private string _subject;
+
+        public string EmailAddress
+        {
+            get { return _emailAddress ?? ""; }
+            set { _emailAddress = value; }
+        }
+
+        private string _emailAddress;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

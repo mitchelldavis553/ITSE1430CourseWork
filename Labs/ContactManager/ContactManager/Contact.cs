@@ -16,19 +16,19 @@ namespace ContactManager
         }
         private string _name;
 
-        public string EmailAddress
+        public string ContactEmailAddress
         {
-            get { return _emailAddress ?? ""; }
-            set { _emailAddress = value; }
+            get { return _contactEmailAddress ?? ""; }
+            set { _contactEmailAddress = value; }
         }
-        private string _emailAddress;
+        private string _contactEmailAddress;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (String.IsNullOrEmpty(Name))
                 yield return new ValidationResult("Name is required.", new[] { nameof(Name) });
 
-            if (String.IsNullOrEmpty(EmailAddress))
+            if (String.IsNullOrEmpty(ContactEmailAddress))
                 yield return new ValidationResult("Email Address is required.", new[] { nameof(Name) });
         }
         //Form for sending an email, implements IMessageService, Object for what an email is, set that object to display on right side of split container on main form

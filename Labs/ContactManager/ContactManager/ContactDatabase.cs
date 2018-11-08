@@ -50,7 +50,7 @@ namespace ContactManager
         {
            foreach (var item in _items)
             {
-                if ((contact.Name == item.Name) && (contact.EmailAddress == item.EmailAddress))
+                if ((contact.Name == item.Name) && (contact.ContactEmailAddress == item.ContactEmailAddress))
                     return true;
             }
 
@@ -72,7 +72,7 @@ namespace ContactManager
                    select new Contact()
                    {
                        Name = c.Name,
-                       EmailAddress = c.EmailAddress
+                       ContactEmailAddress = c.ContactEmailAddress
                    };
         }
     }
