@@ -2,6 +2,7 @@
  * Mitchell Davis
  * ITSE 1430
  * Email Lab
+ * 10/27/18
  */
 using System;
 using System.Collections.Generic;
@@ -79,9 +80,11 @@ namespace ContactManager.UI
 
         private void OnValidateEmail(object sender, CancelEventArgs e)
         {
+            var source = sender as String;
+             var result = EmailValidation(source);
             var control = sender as TextBox;
 
-            if (String.IsNullOrEmpty(control.Text))
+            if (String.IsNullOrEmpty(control.Text) && result)
             {
                 _errors.SetError(control, "An Email Address is required to add a contact");
                 e.Cancel = true;
@@ -89,6 +92,18 @@ namespace ContactManager.UI
             else
                 _errors.SetError(control, "");
             
+        }
+
+        private bool EmailValidation(string source)
+        {
+            try
+            {
+                new System.Net.Mail.MailAddress(source);
+                return true;
+            }
+            catch { };
+
+            return false;
         }
 
        
