@@ -2,6 +2,7 @@
  * Mitchell Davis
  * ITSE 1430
  * Email Lab
+ * 11/03/18
  */
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace ContactManager.UI
         {
             if (Contact != null )
             {
+                _txtContactName.Text = Contact.Name;
                 _txtEmailAddress.Text = Contact.ContactEmailAddress;
             }
         }

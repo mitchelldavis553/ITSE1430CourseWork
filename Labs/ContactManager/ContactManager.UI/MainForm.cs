@@ -2,6 +2,7 @@
  * Mitchell Davis
  * ITSE 1430
  * Email Lab
+ * 10/27/18
  */
 using System;
 using System.Collections.Generic;
@@ -95,6 +96,7 @@ namespace ContactManager.UI
                 return;
 
             _database.Edit(item.Name, form.Contact);
+            RefreshContacts();
         }
 
         private void OnContactDelete(object sender, EventArgs e) => DeleteContact();
