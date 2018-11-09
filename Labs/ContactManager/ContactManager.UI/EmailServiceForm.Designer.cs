@@ -74,7 +74,7 @@
             this._txtEmailAddress.Name = "_txtEmailAddress";
             this._txtEmailAddress.ReadOnly = true;
             this._txtEmailAddress.Size = new System.Drawing.Size(202, 20);
-            this._txtEmailAddress.TabIndex = 3;
+            this._txtEmailAddress.TabIndex = 0;
             this._txtEmailAddress.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateEmail);
             // 
             // _txtSubject
@@ -83,7 +83,7 @@
             this._txtSubject.Multiline = true;
             this._txtSubject.Name = "_txtSubject";
             this._txtSubject.Size = new System.Drawing.Size(169, 20);
-            this._txtSubject.TabIndex = 4;
+            this._txtSubject.TabIndex = 1;
             this._txtSubject.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateSubject);
             // 
             // _txtMessage
@@ -92,14 +92,14 @@
             this._txtMessage.Multiline = true;
             this._txtMessage.Name = "_txtMessage";
             this._txtMessage.Size = new System.Drawing.Size(201, 152);
-            this._txtMessage.TabIndex = 5;
+            this._txtMessage.TabIndex = 2;
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(137, 245);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 3;
             this.button1.Text = "Send";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.OnSend);
@@ -109,9 +109,10 @@
             this.button2.Location = new System.Drawing.Point(218, 245);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
+            this.button2.TabIndex = 4;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.OnCancel);
             // 
             // _errors
             // 
@@ -121,6 +122,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(338, 277);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

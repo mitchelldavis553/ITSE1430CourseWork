@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Mitchell Davis
+ * ITSE 1430
+ * Email Lab
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +13,32 @@ namespace ContactManager
 {
     public class ContactDatabase
     {
-        private List<Contact> _items = new List<Contact>();
+        private List<Contact> _contacts = new List<Contact>();
+        private List<Email> _emails = new List<Email>();
+
+        public void Add(Email email)
+        {
+            if (email == null)
+                return;
+
+            EmailAdd(email);
+        }
+
+        protected void EmailAdd(Email email) => _emails.Add(email);
+
+        public IEnumerable<Email> GetEmails() => GetAllEmails();
+
+        protected IEnumerable<Email> GetAllEmails()
+        {
+            return from e in _emails
+                   select new Email()
+                   {
+                       EmailAddress = e.EmailAddress,
+                       Subject = e.Subject,
+                       Message = e.Message
+                   };
+        }
+
         public void Add(Contact contact)
         {
             if (contact == null)
@@ -23,7 +53,7 @@ namespace ContactManager
         {
             var contact = FindByName(name);
             if (contact != null)
-                _items.Remove(contact);
+                _contacts.Remove(contact);
         }
 
         public void Edit (string name, Contact contact)
@@ -34,21 +64,20 @@ namespace ContactManager
             EditContact(existingContact, contact);
         }
 
-
         protected void EditContact(Contact oldContact, Contact newContact)
         {
-            _items.Remove(oldContact);
+            _contacts.Remove(oldContact);
 
-            _items.Add(newContact);
+            _contacts.Add(newContact);
         }
 
-        protected void ContactAdd(Contact contact) => _items.Add(contact);
+        protected void ContactAdd(Contact contact) => _contacts.Add(contact);
 
         public bool ExistingContact(Contact contact) => CheckExistingContact(contact);
 
         protected bool CheckExistingContact(Contact contact)
         {
-           foreach (var item in _items)
+           foreach (var item in _contacts)
             {
                 if ((contact.Name == item.Name) && (contact.ContactEmailAddress == item.ContactEmailAddress))
                     return true;
@@ -59,7 +88,7 @@ namespace ContactManager
 
         protected Contact FindByName( string name )
         {
-            return (from c in _items
+            return (from c in _contacts
                     where String.Compare(name, c.Name, true) == 0
                     select c).FirstOrDefault();
         }
@@ -68,7 +97,7 @@ namespace ContactManager
 
         protected IEnumerable<Contact> GetAllContacts() 
         {
-            return from c in _items
+            return from c in _contacts
                    select new Contact()
                    {
                        Name = c.Name,

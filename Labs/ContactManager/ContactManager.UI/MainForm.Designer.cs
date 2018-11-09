@@ -37,12 +37,12 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._listContacts = new System.Windows.Forms.ListBox();
             this._listEmails = new System.Windows.Forms.ListBox();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -93,14 +93,14 @@
             // 
             this.addContactToolStripMenuItem.Name = "addContactToolStripMenuItem";
             this.addContactToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Insert;
-            this.addContactToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addContactToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.addContactToolStripMenuItem.Text = "Add";
             this.addContactToolStripMenuItem.Click += new System.EventHandler(this.OnContactAdd);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.OnContactEdit);
             // 
@@ -108,7 +108,7 @@
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.OnContactDelete);
             // 
@@ -127,6 +127,13 @@
             this.sendToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sendToolStripMenuItem.Text = "Send";
             this.sendToolStripMenuItem.Click += new System.EventHandler(this.OnEmailSend);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.Click += new System.EventHandler(this.OnEmailView);
             // 
             // helpToolStripMenuItem
             // 
@@ -169,6 +176,7 @@
             this._listContacts.Name = "_listContacts";
             this._listContacts.Size = new System.Drawing.Size(266, 426);
             this._listContacts.TabIndex = 0;
+            this._listContacts.DoubleClick += new System.EventHandler(this.OnContactDoubleClick);
             // 
             // _listEmails
             // 
@@ -178,12 +186,6 @@
             this._listEmails.Name = "_listEmails";
             this._listEmails.Size = new System.Drawing.Size(530, 426);
             this._listEmails.TabIndex = 0;
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.viewToolStripMenuItem.Text = "View";
             // 
             // MainForm
             // 

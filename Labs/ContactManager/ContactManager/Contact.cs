@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Mitchell Davis
+ * ITSE 1430
+ * Email Lab
+ */
+ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -31,6 +36,5 @@ namespace ContactManager
             if (String.IsNullOrEmpty(ContactEmailAddress))
                 yield return new ValidationResult("Email Address is required.", new[] { nameof(Name) });
         }
-        //Form for sending an email, implements IMessageService, Object for what an email is, set that object to display on right side of split container on main form
     }
 }

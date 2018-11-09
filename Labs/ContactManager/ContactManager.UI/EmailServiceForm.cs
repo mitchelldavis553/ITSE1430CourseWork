@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Mitchell Davis
+ * ITSE 1430
+ * Email Lab
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +16,7 @@ using System.Windows.Forms;
 
 namespace ContactManager.UI
 {
-    public partial class EmailServiceForm : Form,  IMessageService
+    public partial class EmailServiceForm : Form
     {
         public EmailServiceForm()
         {
@@ -23,8 +28,10 @@ namespace ContactManager.UI
 
         private void EmailServiceForm_Load(object sender, EventArgs e)
         {
-            if (Email != null)
+            if (Contact != null )
+            {
                 _txtEmailAddress.Text = Contact.ContactEmailAddress;
+            }
         }
 
         private void OnValidatingSubject(object sender, CancelEventArgs e)
@@ -35,7 +42,6 @@ namespace ContactManager.UI
             {
                 _errors.SetError(control, "Subject is required to send an email.");
                 e.Cancel = true;
-
             }
         }
 
@@ -47,7 +53,8 @@ namespace ContactManager.UI
             var email = new Email()
             {
                 Subject = _txtSubject.Text,
-                Message = _txtMessage.Text
+                Message = _txtMessage.Text,
+                EmailAddress = _txtEmailAddress.Text
             };
 
             if (MessageBox.Show(this, "Are you sure you want to send this email?","Email Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -59,6 +66,8 @@ namespace ContactManager.UI
                     return;
                 };
                 Email = email;
+                DialogResult = DialogResult.OK;
+                Close();
             };
         }
 
@@ -88,10 +97,10 @@ namespace ContactManager.UI
                 _errors.SetError(control, "");
         }
 
-        void IMessageService.Send(Email email)
+        private void OnCancel (object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
-
     }
 }

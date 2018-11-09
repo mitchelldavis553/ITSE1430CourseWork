@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Mitchell Davis
+ * ITSE 1430
+ * Email Lab
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +15,7 @@ using System.Windows.Forms;
 
 namespace ContactManager.UI
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IMessageService
     {
         public MainForm()
         {
@@ -22,16 +27,20 @@ namespace ContactManager.UI
             base.OnLoad(e);
 
             _listContacts.DisplayMember = "Name";
+            _listEmails.DisplayMember = "EmailAddress";
+
             RefreshContacts();
+            Sent();
         }
+
 
         private ContactDatabase _database = new ContactDatabase();
 
         private void RefreshContacts()
         {
-            var contacts = from m in _database.GetAll()
-                           orderby m.Name
-                           select m;
+            var contacts = from c in _database.GetAll()
+                           orderby c.Name
+                           select c;
 
             _listContacts.Items.Clear();
 
@@ -50,6 +59,7 @@ namespace ContactManager.UI
         }
 
         private Contact GetSelectedContact() => _listContacts.SelectedItem as Contact;
+        private Email GetSelectedEmail() => _listEmails.SelectedItem as Email;
 
         private void OnContactAdd (object sender, EventArgs e)
         {
@@ -68,7 +78,6 @@ namespace ContactManager.UI
                 _database.Add(form.Contact);
                 RefreshContacts();
             };
-
         }
 
         private void OnContactEdit(object sender, EventArgs e) => EditContact();
@@ -116,6 +125,34 @@ namespace ContactManager.UI
             
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
+
+            _database.Add(form.Email);
+            Sent();
+        }
+
+        public void Sent()
+        {
+            var emails = from e in _database.GetEmails()
+                         orderby e.EmailAddress
+                         select e;
+
+            _listEmails.Items.Clear();
+            _listEmails.Items.AddRange(emails.ToArray());
+
+        }
+
+        private void OnEmailView (object sender, EventArgs e)
+        {
+            var item = GetSelectedEmail();
+            if (item == null)
+                return;
+
+            MessageBox.Show(this, $"Email Address: {item.EmailAddress}\nSubject: {item.Subject}\nMessage: {item.Message}", "Sent Email", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void OnContactDoubleClick (object sender, EventArgs e)
+        {
+            EditContact();
         }
     }
 }

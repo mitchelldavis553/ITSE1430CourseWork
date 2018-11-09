@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Mitchell Davis
+ * ITSE 1430
+ * Email Lab
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
