@@ -16,7 +16,7 @@ namespace Nile.Stores
         {
             //TODO: Check arguments
 
-            //TODO: Validate product
+            ObjectValidator.Validate(product);
 
             //Emulate database by storing copy
             return AddCore(product);
@@ -54,7 +54,7 @@ namespace Nile.Stores
         {
             //TODO: Check arguments
 
-            //TODO: Validate product
+            ObjectValidator.Validate(product);
 
             //Get existing product
             var existing = GetCore(product.Id);

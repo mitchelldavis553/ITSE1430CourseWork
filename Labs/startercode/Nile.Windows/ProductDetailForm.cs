@@ -56,9 +56,7 @@ namespace Nile.Windows
         private void OnSave ( object sender, EventArgs e )
         {
             if (!ValidateChildren())
-            {
                 return;
-            };
 
             var product = new Product()
             {
@@ -69,7 +67,12 @@ namespace Nile.Windows
                 IsDiscontinued = _chkDiscontinued.Checked,
             };
 
-            //TODO: Validate product
+            var results = ObjectValidator.TryValidate(product);
+            foreach (var result in results)
+            {
+                MessageBox.Show(this, result.ErrorMessage, "Validation Failed", MessageBoxButtons.OK);
+                return;
+            };
 
             Product = product;
             DialogResult = DialogResult.OK;

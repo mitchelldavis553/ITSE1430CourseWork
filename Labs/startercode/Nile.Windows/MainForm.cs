@@ -140,5 +140,10 @@ namespace Nile.Windows
 
         private readonly IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
         #endregion
+
+        private void OnHelpAbout (object sender, EventArgs e)
+        {
+            MessageBox.Show(this, "Mitchell Davis\n ITSE 1430\n Fall Semester\n", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
