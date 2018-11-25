@@ -90,6 +90,18 @@ namespace Nile.Stores
             return null;
         }
 
+        //Checks if Name already exists
+        protected override void CheckExistingName(Product product)
+        {
+            foreach (var value in _products)
+            {
+                if (String.Compare(product.Name, value.Name, true) == 0)
+                    throw new Exception("Duplicate Name"); 
+            };
+
+            return;
+        }
+
         private List<Product> _products = new List<Product>();
         private int _nextId = 1;
     }

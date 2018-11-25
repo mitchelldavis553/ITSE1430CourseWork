@@ -72,6 +72,8 @@ namespace Nile.Stores
 
         protected abstract Product GetCore( int id );
 
+        protected abstract void CheckExistingName(Product product);
+
         protected abstract IEnumerable<Product> GetAllCore();
 
         protected abstract void RemoveCore( int id );
