@@ -2,6 +2,7 @@
  * ITSE 1430
  */
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Nile.Windows
@@ -43,6 +44,9 @@ namespace Nile.Windows
             {
                 _database.Add(child.Product);
             } catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } catch (DuplicateNameException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -135,7 +139,11 @@ namespace Nile.Windows
             } catch (ArgumentNullException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } catch (DuplicateNameException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             UpdateList();
         }
 

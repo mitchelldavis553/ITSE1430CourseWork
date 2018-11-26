@@ -82,7 +82,7 @@ namespace ContactManager
             {
                 if ((contact.Name == item.Name) && (contact.ContactEmailAddress == item.ContactEmailAddress))
                     return true;
-            }
+            };
 
             return false;
         }

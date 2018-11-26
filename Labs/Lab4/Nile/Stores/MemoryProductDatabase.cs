@@ -3,6 +3,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Nile.Stores
 {
@@ -15,6 +16,13 @@ namespace Nile.Stores
         protected override Product AddCore ( Product product )
         {
             var newProduct = CopyProduct(product);
+
+            foreach (var comProduct in _products)
+            {
+                if (String.Compare(comProduct.Name, newProduct.Name, true) == 0) //Does Product already exist?
+                    throw new DuplicateNameException("Duplicate Name");
+            };
+         
             _products.Add(newProduct);
 
             if (newProduct.Id <= 0)
@@ -56,10 +64,20 @@ namespace Nile.Stores
         /// <returns>The updated product.</returns>
         protected override Product UpdateCore ( Product existing, Product product )
         {
-            //Replace 
+            //Replace
             existing = FindProduct(product.Id);
+
+            if (String.Compare(existing.Name, product.Name, true) == 1) // If the existing and new product are not the same
+            {
+                foreach (var comProduct in _products)
+                {
+                    if (String.Compare(comProduct.Name, product.Name, true) == 0) // And if there are no duplicates of the newProduct
+                        throw new DuplicateNameException("Duplicate Name");
+                };
+            };
+
             _products.Remove(existing);
-            
+
             var newProduct = CopyProduct(product);
             _products.Add(newProduct);
 
@@ -88,18 +106,6 @@ namespace Nile.Stores
             };
 
             return null;
-        }
-
-        //Checks if Name already exists
-        protected override void CheckExistingName(Product product)
-        {
-            foreach (var value in _products)
-            {
-                if (String.Compare(product.Name, value.Name, true) == 0)
-                    throw new Exception("Duplicate Name"); 
-            };
-
-            return;
         }
 
         private List<Product> _products = new List<Product>();

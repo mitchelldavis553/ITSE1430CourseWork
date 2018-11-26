@@ -58,7 +58,7 @@ namespace Nile.Stores
         public Product Update ( Product product )
         {
             if (product == null)
-                throw new ArgumentNullException("product");
+                throw new ArgumentNullException("Product");
 
             ObjectValidator.Validate(product);
 
@@ -71,8 +71,6 @@ namespace Nile.Stores
         #region Protected Members
 
         protected abstract Product GetCore( int id );
-
-        protected abstract void CheckExistingName(Product product);
 
         protected abstract IEnumerable<Product> GetAllCore();
 
