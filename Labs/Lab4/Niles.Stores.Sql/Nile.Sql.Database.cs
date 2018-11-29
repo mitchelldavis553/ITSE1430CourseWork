@@ -24,6 +24,9 @@ namespace Niles.Stores.Sql
 
         protected override Product AddCore(Product product)
         {
+            if (product == null)
+                throw new ArgumentNullException("product");
+
             using (var conn = CreateConnection())
             {
                 var cmd = new SqlCommand("AddProduct", conn);
@@ -53,18 +56,15 @@ namespace Niles.Stores.Sql
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
-                    {
-                        foreach (var value in reader)
-                        {
-                            yield return new Product()
-                            {
-                                Id = reader.GetFieldValue<int>(0),
-                                Name = reader.GetFieldValue<string>(1),
-                                Price = reader.GetFieldValue<decimal>(2),
-                                Description = reader.GetFieldValue<string>(3),
-                                IsDiscontinued = reader.GetFieldValue<bool>(4)
-                            };
-                        };
+                    {                       
+                       yield return new Product()
+                       {                          
+                           Id = reader.GetFieldValue<int>(0),
+                           Name = reader.GetFieldValue<string>(1),
+                           Price = reader.GetFieldValue<decimal>(2),
+                           Description = reader.GetFieldValue<string>(3),
+                           IsDiscontinued = reader.GetFieldValue<bool>(4)
+                       };                     
                     };
                 };
             };
@@ -72,17 +72,72 @@ namespace Niles.Stores.Sql
 
         protected override Product GetCore(int id)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                var cmd = new SqlCommand("GetProduct", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var productId = reader.GetSqlInt32(0);
+                        if (id != productId)
+                            continue;
+
+                        return new Product()
+                        {
+                            Id = reader.GetFieldValue<int>(0),
+                            Name = reader.GetFieldValue<string>(1),
+                            Price = reader.GetFieldValue<decimal>(2),
+                            Description = reader.GetFieldValue<string>(3),
+                            IsDiscontinued = reader.GetFieldValue<bool>(4)
+                        };
+                    };
+                };
+            };
+
+            return null;
         }
 
         protected override void RemoveCore(int id)
         {
-            throw new NotImplementedException();
+            var product = GetCore(id);
+            if (product == null)
+                return;
+
+            using (var conn = CreateConnection())
+            {
+                var cmd = new SqlCommand("RemoveProduct", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", product.Id);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            };
         }
 
         protected override Product UpdateCore(Product existing, Product newItem)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                var cmd = new SqlCommand("UpdateProduct", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", existing.Id);
+                cmd.Parameters.AddWithValue("@name", newItem.Name);
+                cmd.Parameters.AddWithValue("@description", newItem.Description);
+                cmd.Parameters.AddWithValue("@price", newItem.Price);
+                cmd.Parameters.AddWithValue("@isDiscontinued", newItem.IsDiscontinued);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                return newItem;
+            };
         }
 
         private SqlConnection CreateConnection() => new SqlConnection(_connectionString);

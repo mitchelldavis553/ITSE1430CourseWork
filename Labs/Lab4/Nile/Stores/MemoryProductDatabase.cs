@@ -35,7 +35,7 @@ namespace Nile.Stores
 
         /// <summary>Get a specific product.</summary>
         /// <returns>The product, if it exists.</returns>
-        protected override Product GetCore ( int id )
+        protected override Product GetCore(int id)
         {
             var product = FindProduct(id);
 
