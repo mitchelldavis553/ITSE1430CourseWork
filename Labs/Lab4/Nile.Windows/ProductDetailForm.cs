@@ -1,5 +1,7 @@
 /*
  * ITSE 1430
+ * Mitchell Davis
+ * Nile Lab 4
  */
 using System;
 using System.ComponentModel;

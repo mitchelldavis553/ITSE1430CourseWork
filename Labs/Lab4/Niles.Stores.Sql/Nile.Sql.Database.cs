@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Nile;
+using Nile.Stores;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nile;
-using Nile.Stores;
 
 namespace Niles.Stores.Sql
 {

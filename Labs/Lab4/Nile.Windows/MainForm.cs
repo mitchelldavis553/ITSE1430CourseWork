@@ -1,5 +1,7 @@
 /*
  * ITSE 1430
+ * Mitchell Davis
+ * Nile Lab 4
  */
 using Niles.Stores.Sql;
 using System;
@@ -170,7 +172,6 @@ namespace Nile.Windows
                 var products = from p in _database.GetAll()
                                orderby p.Name
                                select p;
-
                 _bsProducts.DataSource = products;
             } catch (Exception e)
             {
