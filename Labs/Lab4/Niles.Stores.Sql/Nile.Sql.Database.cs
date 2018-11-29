@@ -24,9 +24,6 @@ namespace Niles.Stores.Sql
 
         protected override Product AddCore(Product product)
         {
-            if (product == null)
-                throw new ArgumentNullException("product");
-
             using (var conn = CreateConnection())
             {
                 var cmd = new SqlCommand("AddProduct", conn);
@@ -51,7 +48,7 @@ namespace Niles.Stores.Sql
             {
                 var cmd = new SqlCommand("GetAllProducts", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
+                
                 conn.Open();
                 using (var reader = cmd.ExecuteReader())
                 {

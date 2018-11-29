@@ -5,6 +5,7 @@ using Niles.Stores.Sql;
 using System;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Nile.Windows
@@ -26,9 +27,10 @@ namespace Nile.Windows
             var connString = ConfigurationManager.ConnectionStrings["ProductDatabase"].ConnectionString;
 
             _database = new SqlDatabase(connString);
+            
 
             _gridProducts.AutoGenerateColumns = false;
-
+            
             UpdateList();
         }
 
@@ -165,7 +167,11 @@ namespace Nile.Windows
         {
             try
             {
-                _bsProducts.DataSource = _database.GetAll();
+                var products = from p in _database.GetAll()
+                               orderby p.Name
+                               select p;
+
+                _bsProducts.DataSource = products;
             } catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
