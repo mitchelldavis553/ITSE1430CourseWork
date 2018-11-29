@@ -24,12 +24,50 @@ namespace Niles.Stores.Sql
 
         protected override Product AddCore(Product product)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                var cmd = new SqlCommand("AddProduct", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@name", product.Name);
+                cmd.Parameters.AddWithValue("@description", product.Description);
+                cmd.Parameters.AddWithValue("@price", product.Price);
+                cmd.Parameters.AddWithValue("@isDiscontinued", product.IsDiscontinued);
+
+                conn.Open();
+                var result = cmd.ExecuteScalar();
+                var id = Convert.ToInt32(result);
+
+                return product;
+            }
         }
 
         protected override IEnumerable<Product> GetAllCore()
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                var cmd = new SqlCommand("GetAllProducts", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        foreach (var value in reader)
+                        {
+                            yield return new Product()
+                            {
+                                Id = reader.GetFieldValue<int>(0),
+                                Name = reader.GetFieldValue<string>(1),
+                                Price = reader.GetFieldValue<decimal>(2),
+                                Description = reader.GetFieldValue<string>(3),
+                                IsDiscontinued = reader.GetFieldValue<bool>(4)
+                            };
+                        };
+                    };
+                };
+            };
         }
 
         protected override Product GetCore(int id)

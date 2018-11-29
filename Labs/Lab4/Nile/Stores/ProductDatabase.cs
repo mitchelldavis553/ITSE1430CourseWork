@@ -20,9 +20,8 @@ namespace Nile.Stores
             ObjectValidator.Validate(product);
 
             //Emulate database by storing copy
-          
-           return AddCore(product);
-          
+                     
+           return AddCore(product);          
         }
 
         /// <summary>Get a specific product.</summary>
