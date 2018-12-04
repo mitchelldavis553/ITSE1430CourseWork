@@ -40,7 +40,7 @@ namespace ITSE1430.MovieLib
 
         public bool IsOwned { get; set; }
         
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         public bool IsColor => ReleaseYear > 1940;
         //{
