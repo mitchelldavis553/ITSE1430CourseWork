@@ -1,5 +1,4 @@
-﻿using EventDatabase;
-using EventPlanner.Memory;
+﻿using EventPlanner.Mvc.App_Start;
 using EventPlanner.Mvc.Models;
 using System;
 using System.Collections.Generic;
@@ -12,8 +11,7 @@ namespace EventPlanner.Mvc.Controllers
     {
         public EventController()
         {
-            _database = new MemoryEventDatabase();
-            _database.Seed();
+
         }
 
         [HttpGet]
@@ -26,7 +24,7 @@ namespace EventPlanner.Mvc.Controllers
                 BeginDate = DateTime.MinValue,
             };
 
-            var results = _database.GetAll(criteria);
+            var results = DatabaseFactory._database.GetAll(criteria);
             var filteredEvents = filterResults(results);
 
             return View(filteredEvents.Select(i => new EventModel(i)));
@@ -42,7 +40,7 @@ namespace EventPlanner.Mvc.Controllers
                 BeginDate = DateTime.MinValue,
             };
 
-            var results = _database.GetAll(criteria);
+            var results = DatabaseFactory._database.GetAll(criteria);
             var filteredEvents = filterResults(results);
 
             return View(filteredEvents.Select(i => new EventModel(i)));
@@ -51,7 +49,7 @@ namespace EventPlanner.Mvc.Controllers
        [HttpGet]
         public ActionResult Details(int id)
         {
-            var item = _database.Get(id);
+            var item = DatabaseFactory._database.Get(id);
             if (item == null)
                 return HttpNotFound();
 
@@ -79,7 +77,7 @@ namespace EventPlanner.Mvc.Controllers
                 {
                     var item = model.ToDomain();
 
-                    _database.Add(item);
+                    DatabaseFactory._database.Add(item);
 
                     if (item.IsPublic == true)
                         return RedirectToAction("Public");
@@ -104,6 +102,5 @@ namespace EventPlanner.Mvc.Controllers
                 select r;
         }
 
-        private readonly IEventDatabase _database;
     }
 }
