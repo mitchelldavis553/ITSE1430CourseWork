@@ -1,11 +1,9 @@
 ﻿using EventDatabase;
 using EventPlanner.Memory;
-using EventPlanner.Mvc.App_Start;
 using EventPlanner.Mvc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EventPlanner.Mvc.Controllers
@@ -16,11 +14,6 @@ namespace EventPlanner.Mvc.Controllers
         {
             _database = new MemoryEventDatabase();
             _database.Seed();
-        }
-
-        public ActionResult Index()
-        {
-            return View();
         }
 
         [HttpGet]
@@ -53,6 +46,54 @@ namespace EventPlanner.Mvc.Controllers
             var filteredEvents = filterResults(results);
 
             return View(filteredEvents.Select(i => new EventModel(i)));
+        }
+
+       [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var item = _database.Get(id);
+            if (item == null)
+                return HttpNotFound();
+
+            return View(new EventModel(item));
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            var model = new EventModel()
+            {
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create (EventModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var item = model.ToDomain();
+
+                    _database.Add(item);
+
+                    if (item.IsPublic == true)
+                        return RedirectToAction("Public");
+                    if (item.IsPublic == false)
+                        return RedirectToAction("My");
+
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                };
+            }
+
+            return View(model);
         }
 
         private IEnumerable<ScheduledEvent> filterResults(IEnumerable<ScheduledEvent> results)
