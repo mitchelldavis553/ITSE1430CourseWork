@@ -11,7 +11,7 @@ namespace EventPlanner.Mvc.Controllers
     {
         public EventController()
         {
-
+          
         }
 
         [HttpGet]
@@ -47,7 +47,7 @@ namespace EventPlanner.Mvc.Controllers
         }
 
        [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details (int id)
         {
             var item = DatabaseFactory._database.Get(id);
             if (item == null)
@@ -88,8 +88,79 @@ namespace EventPlanner.Mvc.Controllers
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
+                    return View(model);
                 };
             }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var item = DatabaseFactory._database.Get(id);
+            if (item == null)
+                return HttpNotFound();
+
+            return View(new EventModel(item));
+        }
+
+        [HttpPost]
+        public ActionResult Edit (EventModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var item = model.ToDomain();
+                    var existing = DatabaseFactory._database.Get(item.Id);
+
+                    DatabaseFactory._database.Update(item.Id, item);
+
+                    if (item.IsPublic == true)
+                        return RedirectToAction("Public");
+                    if (item.IsPublic == false)
+                        return RedirectToAction("My");
+
+                } catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                    return View(model);
+                };
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Delete (int id)
+        {
+            var item = DatabaseFactory._database.Get(id);
+            if (item == null)
+                return HttpNotFound();
+
+            return View(new EventModel(item));
+        }
+
+        [HttpPost]
+        public ActionResult Delete (EventModel model)
+        {
+            try
+            {
+                var item = model.ToDomain();
+
+                DatabaseFactory._database.Remove(item.Id);
+
+                if (item.IsPublic == true)
+                    return RedirectToAction("Public");
+                if (item.IsPublic == false)
+                    return RedirectToAction("My");
+
+            } catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+                return View(model);
+            };
 
             return View(model);
         }

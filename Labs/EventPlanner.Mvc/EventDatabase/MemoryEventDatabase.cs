@@ -13,6 +13,27 @@ namespace EventPlanner.Memory
     /// <summary>Provides an implementation of <see cref="IEventDatabase"/> backed by memory.</summary>
     public class MemoryEventDatabase : IEventDatabase
     {
+        public MemoryEventDatabase ()
+        {
+            var privateSeedEvent = new ScheduledEvent()
+            {
+                Name = "Christmas Party",
+                StartDate = DateTime.Parse("12/25/2018"),
+                EndDate = DateTime.Parse("12/26/2018"),
+                IsPublic = false,
+            };
+            _items.Add(privateSeedEvent);
+
+            var publicSeedEvent = new ScheduledEvent() //For some reason this Event is broken, couldn't find how to fix it
+            {
+                Name = "December 27th",
+                Description = "The 27th day of December",
+                StartDate = DateTime.Parse("12/27/2018"),
+                EndDate = DateTime.Parse("12/28/2018"),
+                IsPublic = true,
+            };
+            _items.Add(publicSeedEvent);
+        }
         public ScheduledEvent Add ( ScheduledEvent evt )
         {
             Verify.ArgumentIsValidAndNotNull(nameof(evt), evt);
@@ -24,6 +45,8 @@ namespace EventPlanner.Memory
 
             var newEvt = CloneEvent(evt);
             evt.Id = newEvt.Id = _id++;
+
+            var bug = newEvt.Id;
 
             _items.Add(newEvt);
 
@@ -111,6 +134,7 @@ namespace EventPlanner.Memory
 
         private readonly List<ScheduledEvent> _items = new List<ScheduledEvent>();
         private int _id = 1;
+
         #endregion
     }
 }
