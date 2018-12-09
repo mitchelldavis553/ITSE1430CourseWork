@@ -1,4 +1,5 @@
 ﻿using EventPlanner.Memory;
+using EventPlanner.Mvc.App_Start;
 using EventPlanner.Mvc.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace EventPlanner.Mvc.Controllers
     {
         public EventController()
         {
-            _database = new MemoryEventDatabase();
+            _database = new DatabaseFactory();
         }
         public ActionResult Index()
         {

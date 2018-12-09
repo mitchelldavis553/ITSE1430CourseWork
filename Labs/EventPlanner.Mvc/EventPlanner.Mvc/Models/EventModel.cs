@@ -62,7 +62,7 @@ namespace EventPlanner.Mvc.Models
         public DateTime EndDate
         {
             get => _endDate;
-            set { _endDate = (value >= StartDate) ? value : StartDate; }
+            set { _endDate = (value >= StartDate) ? value : StartDate; } //If the End Date they provided was invalid just set it as StartDate
         }
         private DateTime _endDate;
 
