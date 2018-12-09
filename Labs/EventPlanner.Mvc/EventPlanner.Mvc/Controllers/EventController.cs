@@ -13,7 +13,7 @@ namespace EventPlanner.Mvc.Controllers
     {
         public EventController()
         {
-            _database = new DatabaseFactory();
+            _database = new MemoryEventDatabase();
         }
         public ActionResult Index()
         {
