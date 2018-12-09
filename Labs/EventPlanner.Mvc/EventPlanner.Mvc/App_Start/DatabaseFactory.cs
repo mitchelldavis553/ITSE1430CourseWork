@@ -12,18 +12,16 @@ namespace EventPlanner.Mvc.App_Start
         {
             var db = new MemoryEventDatabase();
 
-            var events = new[]
-            {
-                new ScheduledEvent()
-                {
-
-                },
-
-                new ScheduledEvent()
-                {
-
-                },
+            var seedEvent = new ScheduledEvent()
+            { 
+                Name = "Christmas",
+                Description = "Christmas Day",
+                StartDate = DateTime.Parse("12/25/2018"),
+                EndDate = DateTime.Parse("12/25/2018"),
+                IsPublic = true
             };
+
+            db.Add(seedEvent);
 
             Database = db;
         }
