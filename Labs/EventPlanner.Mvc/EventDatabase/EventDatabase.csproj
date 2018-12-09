@@ -45,6 +45,7 @@
     <Compile Include="IEventDatabase.cs" />
     <Compile Include="MemoryEventDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeedDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Event\Event.csproj">

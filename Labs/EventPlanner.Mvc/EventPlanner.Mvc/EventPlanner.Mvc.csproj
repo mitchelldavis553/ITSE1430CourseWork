@@ -172,6 +172,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Event\My.cshtml" />
+    <Content Include="Views\Event\Public.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
