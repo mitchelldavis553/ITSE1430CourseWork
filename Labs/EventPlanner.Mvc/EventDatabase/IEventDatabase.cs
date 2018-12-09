@@ -1,5 +1,8 @@
 ﻿/*
  * ITSE 1430
+ * Mitchell Davis
+ * Event Planner
+ * 12/09/2018
  */
 using System;
 using System.Collections.Generic;

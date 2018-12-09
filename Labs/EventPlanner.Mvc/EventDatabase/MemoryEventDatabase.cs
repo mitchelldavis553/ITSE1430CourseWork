@@ -24,8 +24,8 @@ namespace EventPlanner.Memory
             };
             _items.Add(privateSeedEvent);
 
-            var publicSeedEvent = new ScheduledEvent() //For some reason this Event is broken, couldn't find how to fix it
-            {
+            var publicSeedEvent = new ScheduledEvent() //For some reason the Id for this Event is broken, I tried seeding the List in other places but it still resulted the same
+            {                                          
                 Name = "December 27th",
                 Description = "The 27th day of December",
                 StartDate = DateTime.Parse("12/27/2018"),

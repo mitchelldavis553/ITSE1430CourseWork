@@ -1,4 +1,10 @@
-﻿using EventPlanner.Mvc.App_Start;
+﻿/*
+ * ITSE 1430
+ * Mitchell Davis
+ * Event Planner
+ * 12/09/2018
+ * */
+using EventPlanner.Mvc.App_Start;
 using EventPlanner.Mvc.Models;
 using System;
 using System.Collections.Generic;
